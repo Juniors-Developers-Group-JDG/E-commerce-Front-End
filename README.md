@@ -8,7 +8,7 @@
 git clone https://github.com/Juniors-Developers-Group-JDG/E-commerce-Front-End.git
 ```
 
-2° - Utilize o comando para abrir seu editor de código: `code .`
+2° - Utilize o comando `cd E-commerce-Front-End/` e `code .` para abrir seu editor de código
 
 3° - Abra o terminal do seu editor de código e utilize os comandos e veja se está funcionando:
 
