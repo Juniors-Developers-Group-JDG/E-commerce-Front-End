@@ -13,9 +13,15 @@ git clone https://github.com/Juniors-Developers-Group-JDG/E-commerce-Front-End.g
 3° - Abra o terminal do seu editor de código e utilize os comandos e veja se está funcionando:
 
 ```
-npm install
+npm install @typescript-eslint/eslint-plugin eslint-config-prettier eslint-plugin-import-helpers eslint-plugin-prettier
 npm run dev
 ```
+
+OBS ESlint - Atualize seu VScode com "ctrl shift p" e "Reload Window"
+
+Caso seu arquivo esteja dando erro no ESlint, provavelmente ele estará com o CLRF (olhar no canto inferior VScode), troque para LF
+
+![image](https://github.com/Juniors-Developers-Group-JDG/E-commerce-Front-End/assets/103312834/b5caedb7-4da3-4981-9789-018bf06c9085)
 
 4° - Crie sua branch de acordo com sua task
 
