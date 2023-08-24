@@ -1,34 +1,32 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# E-Commerce
 
-## Getting Started
+## Instruções para rodar o projeto
 
-First, run the development server:
+1° - Abra seu terminal e execute o seguinte comando:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+```
+git clone https://github.com/Juniors-Developers-Group-JDG/E-commerce-Front-End.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2° - Utilize o comando para abrir seu editor de código: `code .`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3° - Abra o terminal do seu editor de código e utilize os comandos e veja se está funcionando:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```
+npm install
+npm run dev
+```
 
-## Learn More
+4° - Crie sua branch de acordo com sua task
 
-To learn more about Next.js, take a look at the following resources:
+Exemplo: home-top
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+git checkout -b home-banner
+git push --set-upstream origin home-banner
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+5° - Desenvolva sua task
 
-## Deploy on Vercel
+OBS: lembre sempre de commitar de maneira semântica e recorrente, para facilitar o entendimento e organização. Mais informações [aqui](https://github.com/Juniors-Developers-Group-JDG/Learning-resources/blob/main/Resources/Git.md).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

@@ -1,12 +1,12 @@
 import Header from '@/components/Header';
 
-const Home = () => {
+const Contact = () => {
   return (
     <main>
       <Header />
-      <h1>Home</h1>
+      <h1>Contact</h1>
     </main>
   );
 };
 
-export default Home;
+export default Contact;
