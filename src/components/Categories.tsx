@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 import expandLeft from '@/assets/images/expand-left.svg';
 import expandRight from '@/assets/images/expand-right.svg';
@@ -33,8 +34,8 @@ const mockCategoriesData = [
 
 const Categories = ({ categories = mockCategoriesData }: CategoriesProps) => {
   return (
-    <div className="bg-[#000033] pt-6 shadow-[inset_0_-10rem_0_rgba(256,256,256,1)]">
-      <section className="px-10 w-[90%] mx-auto">
+    <div className="bg-[#000033] pt-6 shadow-[inset_0_-17.5rem_0_rgba(256,256,256,1)]">
+      <section className="w-[95%] px-6 mx-auto">
         <h2 className="text-[2.5em] text-white text-center font-bold">
           Categorias
         </h2>
@@ -64,8 +65,20 @@ const Categories = ({ categories = mockCategoriesData }: CategoriesProps) => {
             <CategoryCard label={category.label} />
           ))}
         </div>
-
-        <h2>Mais procurados</h2>
+        <div className="flex flex-col ">
+          <h2 className="font-bold text-[2.5em] text-[#000033]">
+            Mais procurados
+          </h2>
+          <p className="text-[1.5em]">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit
+          </p>
+          <Link
+            href="/promotions"
+            className="text-[#3282B8] text-[1.5em] self-end font-semibold transition-all cursor-pointer hover:scale-[1.1]"
+          >
+            Ver todos
+          </Link>
+        </div>
       </section>
     </div>
   );
