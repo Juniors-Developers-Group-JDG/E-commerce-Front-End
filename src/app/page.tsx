@@ -1,3 +1,4 @@
+import Categories from '@/components/Categories';
 import Header from '@/components/Header';
 
 const Home = () => {
@@ -5,6 +6,7 @@ const Home = () => {
     <main>
       <Header />
       <h1>Home</h1>
+      <Categories />
     </main>
   );
 };
