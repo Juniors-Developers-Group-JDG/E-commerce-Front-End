@@ -1,3 +1,4 @@
+import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 
 const Contact = () => {
@@ -5,6 +6,7 @@ const Contact = () => {
     <main>
       <Header />
       <h1>Contact</h1>
+      <Footer />
     </main>
   );
 };

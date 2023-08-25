@@ -1,12 +1,13 @@
-import Categories from '@/components/Categories';
+import Banner from '@/components/Banner';
+import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 
 const Home = () => {
   return (
     <main>
       <Header />
-      <h1>Home</h1>
-      <Categories />
+      <Banner />
+      <Footer />
     </main>
   );
 };
