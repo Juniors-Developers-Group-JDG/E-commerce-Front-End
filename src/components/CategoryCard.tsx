@@ -8,7 +8,7 @@ interface CategoryCardProps {
 
 const CategoryCard = ({ label }: CategoryCardProps) => {
   return (
-    <div className="flex flex-col justify-center items-center bg-[#F3F3F3] h-[277px] w-[267px] rounded-md hover:scale-[1.025] transition-all cursor-pointer">
+    <div className="flex flex-col justify-center items-center px-4 text-center bg-[#F3F3F3] h-[277px] w-[267px] rounded-md hover:scale-[1.025] transition-all cursor-pointer">
       <Image
         src={mockCategoryImage}
         width={86}

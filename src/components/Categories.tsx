@@ -34,7 +34,7 @@ const mockCategoriesData = [
 const Categories = ({ categories = mockCategoriesData }: CategoriesProps) => {
   return (
     <div className="bg-[#000033] pt-6 shadow-[inset_0_-10rem_0_rgba(256,256,256,1)]">
-      <section className="px-10">
+      <section className="px-10 w-[90%] mx-auto">
         <h2 className="text-[2.5em] text-white text-center font-bold">
           Categorias
         </h2>
@@ -59,7 +59,7 @@ const Categories = ({ categories = mockCategoriesData }: CategoriesProps) => {
             </CategoriesExpandButton>
           </div>
         </div>
-        <div className="flex gap-8 justify-center mt-10 mb-20">
+        <div className="flex gap-8 justify-evenly mt-10 mb-20">
           {categories.map(category => (
             <CategoryCard label={category.label} />
           ))}
