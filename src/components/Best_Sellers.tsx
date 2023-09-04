@@ -3,6 +3,7 @@ import Link from 'next/link';
 
 import arrowImage from '@/assets/images/arrow.svg';
 import headsetImage from '@/assets/images/headset.svg';
+import jbl from '@/assets/images/jbl.png';
 import microphoneImage from '@/assets/images/microphone.svg';
 import mouseImage from '@/assets/images/mouse.svg';
 import projectorImage from '@/assets/images/projector.svg';
@@ -13,7 +14,7 @@ import Product from './Product';
 const Best_Sellers = () => {
   return (
     <article className="my-[2em]">
-      <section className="flex flex-col text-[#000033] text-center my-4 mx-48 gap-4">
+      <section className="flex flex-col text-[#000033] text-center my-8 mx-20 gap-4">
         <h3 className="font-bold text-[2.5em]">Mais Vendidos</h3>
         <p className="text-[1.5em]">
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dignissimos,
@@ -22,6 +23,29 @@ const Best_Sellers = () => {
           a itaque!
         </p>
       </section>
+      <div className="grid grid-rows-4 grid-flow-col gap-4 mx-32 h-auto w-auto">
+        <div className="bg-[#000033] rounded-lg row-span-4 col-span-2 flex items-center justify-center">
+          <div className="h-[90%] w-[50%]">
+            <Image
+              src={jbl}
+              alt="Caixinha de som JBL"
+              className="h-full w-full"
+            />
+          </div>
+        </div>
+        <div className="rounded-lg row-span-2 flex items-center justify-center bg-[#000033] text-white">
+          <div className="text-9xl">X</div>
+        </div>
+        <div className="rounded-lg row-span-2 flex items-center justify-center bg-[#000033] text-white">
+          <div className="text-9xl">X</div>
+        </div>
+        <div className="rounded-lg row-span-2 flex items-center justify-center bg-[#000033] text-white">
+          <div className="text-9xl">X</div>
+        </div>
+        <div className="rounded-lg row-span-2 flex items-center justify-center bg-[#000033] text-white">
+          <div className="text-9xl">X</div>
+        </div>
+      </div>
       <section className="mt-[3em]">
         <div className="text-[#000033] flex flex-col w-[92.5%] mx-auto">
           <h3 className="font-bold text-[2.5em]">Acabaram de chegar</h3>
