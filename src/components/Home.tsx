@@ -58,7 +58,7 @@ const Home = () => {
                 </div>
             </div>
             
-            <div>
+            <div className="flex justify-around mt-[2em] mb-[2em]">
                 <Image
                     src={arrowImage}
                     alt="Imagem seta para lado"
