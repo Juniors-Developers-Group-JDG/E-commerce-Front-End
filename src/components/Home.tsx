@@ -48,13 +48,13 @@ const Home = () => {
 
         </section> {/*Section informartivo*/}
         
-        <section>
-            <div>
-                <div>
-                    <h3>Para seu computador</h3>
+        <section className="my-[2em] w-[95%]  mx-auto">
+            <div className="flex flex-col  mx-auto">
+                <div className='w-[92.5%] text-[#000033]'>
+                    <h3 className="font-bold text-[2.5em]">Para seu computador</h3>
                 </div>
-                <div>
-                    <p>Descubra os melhores itens no mercado e dê o upgrade que seu setup merece!</p>
+                <div className='w-[92.5%] text-[#000033]'>
+                    <p className="text-[1.5em]">Descubra os melhores itens no mercado e dê o upgrade que seu setup merece!</p>
                 </div>
             </div>
             
