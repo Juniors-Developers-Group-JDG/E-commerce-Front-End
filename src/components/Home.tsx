@@ -14,14 +14,15 @@ import windowsImage from '@/assets/images/windows.svg';
 
 const Home = () => {
   return (
-    <main>
-        <section>
-            <div>
-                <div>
-                    <h2>Baixe nosso aplicativo e use o cupom JDG para 20% de desconto na primeira compra</h2>
-                    <p>Apresse-se! Este cupom é válido até o final do mês e só pode ser usado uma vez por usuário.</p>
+    <main className='mt-[100px]'>
+        <section className="my-[2em] w-[95%]  mx-auto flex  relative">
+
+            <div className='flex flex-col w-full bg-blue-200 mt-10 pb-[60px] pt-[60px] rounded-md'>
+                <div className='flex flex-col'>
+                    <h2 className='font-bold text-[2.0em] w-[50%] p-5 text-center'>Baixe nosso aplicativo e use o cupom JDG para 20% de desconto na primeira compra</h2>
+                    <p className="text-[1.5em] w-[50%] p-5 text-center">Apresse-se! Este cupom é válido até o final do mês e só pode ser usado uma vez por usuário.</p>
                 </div>
-                <figure>
+                <figure className='flex  w-[50%] justify-evenly'>
                     <Image
                         className=""
                         src={googlestore}
@@ -36,10 +37,10 @@ const Home = () => {
                 </figure>
             </div>
 
-            <div>
+            <div className='absolute z-10 top-0 right-[200px]'>
                 <figure>
                     <Image
-                            className=""
+                            className="h-[550px]"
                             src={iphone}
                             alt="Imagem de um smartphone"
                     />
@@ -48,7 +49,7 @@ const Home = () => {
 
         </section> {/*Section informartivo*/}
         
-        <section className="my-[2em] w-[95%]  mx-auto">
+        <section className="my-[2em] w-[95%]  mx-auto mt-[100px] mb-[100px]">
             <div className="flex flex-col  mx-auto">
                 <div className='w-[92.5%] text-[#000033]'>
                     <h3 className="font-bold text-[2.5em]">Para seu computador</h3>
