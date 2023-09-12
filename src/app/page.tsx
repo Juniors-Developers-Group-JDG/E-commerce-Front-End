@@ -1,4 +1,5 @@
 import Banner from '@/components/Banner';
+import Best_Sellers from '@/components/Best_Sellers';
 import Categories from '@/components/Categories';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
@@ -11,6 +12,7 @@ const Home = () => {
       <Banner />
       <Categories />
       <AppProductList />
+      <Best_Sellers />
       <Footer />
     </main>
   );
