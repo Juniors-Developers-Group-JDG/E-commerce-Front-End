@@ -1,15 +1,16 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import arrowImage from '@/assets/images/arrow.svg';
 import expandLeft from '@/assets/images/expand-left.svg';
 import expandRight from '@/assets/images/expand-right.svg';
-import CategoriesExpandButton from '@/components/UI/CategoriesExpandButton';
-import arrowImage from '@/assets/images/arrow.svg';
 import headsetImage from '@/assets/images/headset.svg';
 import microphoneImage from '@/assets/images/microphone.svg';
 import mouseImage from '@/assets/images/mouse.svg';
 import projectorImage from '@/assets/images/projector.svg';
 import windowsImage from '@/assets/images/windows.svg';
+import CategoriesExpandButton from '@/components/UI/CategoriesExpandButton';
+
 import CategoryCard from './CategoryCard';
 import Product from './Product';
 
@@ -115,28 +116,30 @@ const Categories = ({ categories = mockCategoriesData }: CategoriesProps) => {
             </div>
           </div>
           <div className="flex gap-10 justify-center mt-10 mb-20">
-            {categories.map(category => (
-              <CategoryCard label={category.label} />
+            {categories.map((category, index) => (
+              <CategoryCard label={category.label} key={index} />
             ))}
           </div>
         </section>
       </div>
-      <div className="w-[95%] px-6 mx-auto">
-        <div className="flex flex-col ">
+      <div>
+        <div className="flex flex-col w-[95%] px-6 mx-auto">
           <h2 className="font-bold text-[2.5em] text-[#000033]">
             Mais procurados
           </h2>
-          <p className="text-[1.5em]">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit
-          </p>
-          <Link
-            href="/promotions"
-            className="text-[#3282B8] text-[1.5em] self-end font-semibold transition-all cursor-pointer hover:scale-[1.1]"
-          >
-            Ver todos
-          </Link>
+          <div className="flex justify-between">
+            <p className="text-[1.5em]">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit
+            </p>
+            <Link
+              href="/promotions"
+              className="text-[#3282B8] text-[1.5em] self-end font-semibold transition-all cursor-pointer hover:scale-[1.1]"
+            >
+              Ver todos
+            </Link>
+          </div>
         </div>
-        <div className="flex justify-center gap-10 mt-[2em] mb-20">
+        <div className="flex justify-around mt-[2em]">
           <Image
             src={arrowImage}
             alt="Imagem seta para lado"

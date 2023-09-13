@@ -1,10 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import appstoreImage from '@/assets/images/appstore_download.svg';
 import arrowImage from '@/assets/images/arrow.svg';
+import googlestoreImage from '@/assets/images/googleplay_download.svg';
 import headsetImage from '@/assets/images/headset.svg';
-import jblImage from '@/assets/images/jbl.svg';
-import lineImage from '@/assets/images/line.svg';
+import iphoneImage from '@/assets/images/iphone.svg';
 import microphoneImage from '@/assets/images/microphone.svg';
 import mouseImage from '@/assets/images/mouse.svg';
 import projectorImage from '@/assets/images/projector.svg';
@@ -12,66 +13,49 @@ import windowsImage from '@/assets/images/windows.svg';
 
 import Product from './Product';
 
-const Best_Sellers = () => {
+const AppStore = () => {
   return (
-    <article className="my-[2em]">
-      <section className="flex flex-col text-[#000033] text-center my-8 gap-4">
-        <h3 className="font-bold text-[2.5em]">Mais Vendidos</h3>
-        <p className="text-[1.5em] my-0 mx-[25%]">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </p>
+    <article className="mt-[9em]">
+      <section className="flex relative bg-[#DDF0FD]">
+        <div className="flex flex-col pt-[2em] pb-[4em] w-[45vw] mx-[5em]">
+          <div className="flex flex-col">
+            <h2 className="font-[900] text-[2.5em] p-5">
+              Baixe nosso aplicativo e use o cupom JDG para 20% de desconto na
+              primeira compra
+            </h2>
+            <p className="text-[1.5em] p-5">
+              Apresse-se! Este cupom é válido até o final do mês e só pode ser
+              usado uma vez por usuário.
+            </p>
+          </div>
+          <div className="flex mt-[2em]">
+            <Image
+              src={appstoreImage}
+              alt="Imagem do aplicativo na app store"
+            />
+            <Image
+              src={googlestoreImage}
+              alt="Imagem do aplicativo na google store"
+            />
+          </div>
+        </div>
+
+        <div className="absolute z-10 top-[-6em] right-[8em]">
+          <Image
+            className="h-[75vh]"
+            src={iphoneImage}
+            alt="Imagem de um smartphone"
+          />
+        </div>
       </section>
-      <div className="flex gap-4 mx-auto w-[95%]">
-        <div className="bg-[#000033] rounded-lg flex items-center justify-center w-full">
-          <div className="h-[80%] w-[50%]">
-            <Image
-              src={jblImage}
-              alt="Caixinha de som JBL"
-              className="h-full w-full"
-            />
-          </div>
-        </div>
-        <div className="w-full grid grid-cols-2 gap-[1em]">
-          <div className="relative rounded-lg row-span-2 flex items-center justify-center bg-[#3282B8] text-white">
-            <Image src={lineImage} alt="linha" />
-            <Image
-              src={lineImage}
-              alt="linha"
-              className="absolute z-10 rotate-[267deg]"
-            />
-          </div>
-          <div className="relative rounded-lg row-span-2 flex items-center justify-center bg-[#3282B8] text-white">
-            <Image src={lineImage} alt="linha" />
-            <Image
-              src={lineImage}
-              alt="linha"
-              className="absolute z-10 rotate-[267deg]"
-            />
-          </div>
-          <div className="relative rounded-lg row-span-2 flex items-center justify-center bg-[#3282B8] text-white">
-            <Image src={lineImage} alt="linha" />
-            <Image
-              src={lineImage}
-              alt="linha"
-              className="absolute z-10 rotate-[267deg]"
-            />
-          </div>
-          <div className="relative rounded-lg row-span-2 flex items-center justify-center bg-[#3282B8] text-white">
-            <Image src={lineImage} alt="linha" />
-            <Image
-              src={lineImage}
-              alt="linha"
-              className="absolute z-10 rotate-[267deg]"
-            />
-          </div>
-        </div>
-      </div>
-      <section className="my-[3em]">
+
+      <section className="mt-[3em]">
         <div className="text-[#000033] flex flex-col w-[92.5%] mx-auto">
-          <h3 className="font-bold text-[2.5em]">Acabaram de chegar</h3>
+          <h3 className="font-bold text-[2.5em]">Para seu computador</h3>
           <div className="flex justify-between">
-            <p className="text-[1.5em]">Produtos novos em nosso site.</p>
+            <p className="text-[1.5em]">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit
+            </p>
             <Link
               href="/promotions"
               className="text-[#3282B8] text-[1.5em] font-semibold self-end transition-all cursor-pointer hover:scale-[1.1]"
@@ -137,4 +121,4 @@ const Best_Sellers = () => {
   );
 };
 
-export default Best_Sellers;
+export default AppStore;

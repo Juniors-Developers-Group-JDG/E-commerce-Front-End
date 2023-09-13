@@ -35,13 +35,15 @@ const Banner = () => {
       <section className="mt-[3em]">
         <div className="text-[#000033] flex flex-col w-[92.5%] mx-auto">
           <h3 className="font-bold text-[2.5em]">Queima de estoque</h3>
-          <p className="text-[1.5em]">Produtos com 20 a 60% de desconto</p>
-          <Link
-            href="/promotions"
-            className="text-[#3282B8] text-[1.5em] font-semibold self-end transition-all cursor-pointer hover:scale-[1.1]"
-          >
-            Ver todos
-          </Link>
+          <div className="flex justify-between">
+            <p className="text-[1.5em]">Produtos com 20 a 60% de desconto</p>
+            <Link
+              href="/promotions"
+              className="text-[#3282B8] text-[1.5em] font-semibold self-end transition-all cursor-pointer hover:scale-[1.1]"
+            >
+              Ver todos
+            </Link>
+          </div>
         </div>
         <div className="flex justify-around mt-[2em]">
           <Image
