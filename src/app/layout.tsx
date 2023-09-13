@@ -2,6 +2,9 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Lato } from 'next/font/google';
 
+import Footer from '@/components/Footer';
+import Header from '@/components/Header';
+
 const lato = Lato({
   subsets: ['latin'],
   variable: '--font-lato',
@@ -20,7 +23,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
-      <body className={`${lato.variable}`}>{children}</body>
+      <body className={`${lato.variable}`}>
+        <Header />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
