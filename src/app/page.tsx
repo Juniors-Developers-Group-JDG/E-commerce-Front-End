@@ -1,14 +1,14 @@
-import AppProductList from '@/components/AppStore';
-import Banner from '@/components/Banner';
-import Best_Sellers from '@/components/Best_Sellers';
-import Categories from '@/components/Categories';
+import AppStore from '@/components/Home/AppStore';
+import Banner from '@/components/Home/Banner';
+import Best_Sellers from '@/components/Home/Best_Sellers';
+import Categories from '@/components/Home/Categories';
 
 const Home = () => {
   return (
     <main>
       <Banner />
       <Categories />
-      <AppProductList />
+      <AppStore />
       <Best_Sellers />
     </main>
   );

@@ -15,17 +15,17 @@ const krona_one = Krona_One({
 const Footer = () => {
   return (
     <footer>
-      <section className="bg-[#000033] h-[8.75em] flex items-center text-white font-bold text-justify text-[1.5em]">
+      <section className="bg-[#000033] h-[8.75em] flex items-center text-white font-bold text-justify text-[1.5em] max-lg:text-[1em] max-md:items-baseline max-md:flex-col max-md:text-[.85em] max-md:p-[1em]">
         <p className="ml-[2em]">Frete grátis em compras acima de R$ 200,00</p>
-        <div className="w-[.25em] h-[5.75em] bg-white mx-[2.5em]"></div>
+        <div className="w-[.25em] h-[5.75em] bg-white mx-[2.5em] max-md:opacity-0"></div>
         <p>Envio em até 24 horas após o pagamento</p>
-        <div className="w-[.25em] h-[5.75em] bg-white mx-[2.5em]"></div>
+        <div className="w-[.25em] h-[5.75em] bg-white mx-[2.5em] max-md:opacity-0"></div>
         <p>Frete grátis em compras acima de R$ 200,00</p>
-        <div className="w-[.25em] h-[5.75em] bg-white mx-[2.5em]"></div>
+        <div className="w-[.25em] h-[5.75em] bg-white mx-[2.5em] max-md:opacity-0"></div>
         <p className="mr-[2em]">Envio em até 24 horas após o pagamento</p>
       </section>
-      <section className="my-[2em] flex w-[90%] mx-auto justify-between">
-        <div className="self-center">
+      <section className="my-[2em] flex w-[90%] mx-auto justify-between max-md:flex-col">
+        <div className="self-center max-md:self-auto">
           <Link href="/">
             <span
               className={`text-[2.8em] ${krona_one.className} block transition-all cursor-pointer hover:scale-[1.2]`}
@@ -56,7 +56,7 @@ const Footer = () => {
             />
           </div>
         </div>
-        <div className="flex flex-col font-bold text-[1.5em]">
+        <div className="flex flex-col font-bold text-[1.5em] max-lg:text-[1em] max-md:mt-[1em]">
           <Link
             href="/"
             className="transition-all cursor-pointer hover:scale-[1.1] mb-[.5em]"
@@ -76,7 +76,7 @@ const Footer = () => {
             Promoções
           </Link>
         </div>
-        <div className="flex flex-col font-bold text-[1.5em]">
+        <div className="flex flex-col font-bold text-[1.5em] max-lg:text-[1em] max-md:mt-[1em]">
           <Link
             href="/"
             className="transition-all cursor-pointer hover:scale-[1.1] mb-[.5em]"
@@ -96,7 +96,7 @@ const Footer = () => {
             Termos e condições
           </Link>
         </div>
-        <div className="flex flex-col font-bold text-[1.5em]">
+        <div className="flex flex-col font-bold text-[1.5em] max-lg:text-[1em] max-md:mt-[1em]">
           <Link
             href="/"
             className="transition-all cursor-pointer hover:scale-[1.1] mb-[.5em]"
@@ -118,7 +118,7 @@ const Footer = () => {
         </div>
       </section>
       <section className="border-t-black border-t-[1px] border-t-solid flex justify-center p-[2em]">
-        <span className="text-[1.5em] font-bold">
+        <span className="text-[1.5em] font-bold max-lg:text-[1em]">
           Design por Mylena Cardoso da Costa
         </span>
       </section>
