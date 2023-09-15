@@ -1,5 +1,5 @@
 const CartSuggestions = () => {
-  return <div className="bg-[#ededed]">CartSuggestions</div>;
+  return <div className="bg-[#ededed] rounded-xl">CartSuggestions</div>;
 };
 
 export default CartSuggestions;

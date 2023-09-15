@@ -5,12 +5,12 @@ import CartSummary from '@/components/Cart/CartSummary';
 const Cart = () => {
   return (
     <main className="w-[95%] px-12 mt-6 mx-auto">
-      <h1 className="font-bold text-[2.25em] underline underline-offset-8 mb-8">
+      <h1 className="font-bold text-[2.25em] underline underline-offset-8">
         Meu Carrinho
       </h1>
-      <section className="w-full grid grid-cols-3 gap-10">
+      <section className="w-full grid grid-cols-3 gap-10 my-8">
         <CartProducts />
-        <div className="col-span-1">
+        <div className="col-span-1 flex flex-col gap-6">
           <CartSummary />
           <CartSuggestions />
         </div>
