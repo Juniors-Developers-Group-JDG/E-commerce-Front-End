@@ -100,12 +100,14 @@ const Header = () => {
         />
       </div>
       <div className="flex max-md:mt-[1em]">
-        <Image
-          className="transition-all cursor-pointer hover:scale-[1.1] max-lg:w-[35%] max-md:w-full"
-          src={cartImage}
-          width={30}
-          alt="Imagem carrinho de compras"
-        />
+        <Link href="/cart" className="contents">
+          <Image
+            className="transition-all cursor-pointer hover:scale-[1.1] max-lg:w-[35%] max-md:w-full"
+            src={cartImage}
+            width={30}
+            alt="Imagem carrinho de compras"
+          />
+        </Link>
         <Image
           className="ml-[1.5em] transition-all cursor-pointer hover:scale-[1.1] max-lg:w-[35%] max-md:w-full"
           src={userImage}
