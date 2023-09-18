@@ -10,7 +10,7 @@ const Cart = () => {
       </h1>
       <section className="w-full grid grid-cols-3 gap-10 my-8">
         <CartProducts />
-        <div className="col-span-1 flex flex-col gap-6">
+        <div className="col-span-1 flex flex-col gap-10">
           <CartSummary />
           <CartSuggestions />
         </div>

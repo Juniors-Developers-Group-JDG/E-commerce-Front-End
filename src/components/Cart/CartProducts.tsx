@@ -41,7 +41,7 @@ const CartProducts = ({ products = mockProducts }: CartProductsProps) => {
         />
       ))}
 
-      <div className="py-6 text-[2.25em] float-right">
+      <div className="pt-6 text-[2.25em] float-right">
         Produtos:{' '}
         <span className="font-bold">
           R$ {productsSum.toLocaleString('pt-BR')}
