@@ -36,17 +36,17 @@ const CartProduct = ({
                 <span className="font-bold">{quantity}x </span>
                 <sup>R$</sup>{' '}
                 <span className="font-bold">
-                  {priceToString(price).integerPart}{' '}
+                  {priceToString(price).integerPrice}{' '}
                 </span>
-                <sup> {priceToString(price).priceCents}</sup>
+                <sup> {priceToString(price).centsPrice}</sup>
               </div>
             )}
             <div>
               <sup>R$</sup>{' '}
               <span className="font-bold">
-                {priceToString(totalPrice).integerPart}{' '}
+                {priceToString(totalPrice).integerPrice}{' '}
               </span>
-              <sup> {priceToString(totalPrice).priceCents}</sup>
+              <sup> {priceToString(totalPrice).centsPrice}</sup>
             </div>
           </div>
         </div>
