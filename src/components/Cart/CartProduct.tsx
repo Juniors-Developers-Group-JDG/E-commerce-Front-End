@@ -1,5 +1,13 @@
-import { priceToString } from '@/utils/price-formatting';
+'use client';
+
 import Image from 'next/image';
+
+import { priceToString } from '@/utils/price-formatting';
+import minusIcon from '@/assets/images/cart-minus.svg';
+import plusIcon from '@/assets/images/cart-plus.svg';
+import deleteIcon from '@/assets/images/cart-delete.svg';
+
+import CartButton from './CartButton';
 
 export interface CartProductItem {
   name: string;
@@ -42,7 +50,18 @@ const CartProduct = ({
             </div>
           </div>
         </div>
-        <p>Quantidade</p>
+        <div className="flex items-center gap-3">
+          <CartButton type="NEUTRAL">
+            <Image src={minusIcon} alt="Botão de diminuir quantidade do item" />
+          </CartButton>
+          <span className="text-[1.75em] font-bold">{quantity}</span>
+          <CartButton type="SUCCESS">
+            <Image src={plusIcon} alt="Botão de aumentar quantidade do item" />
+          </CartButton>
+          <button className="ms-4 transition-all hover:scale-[1.1]">
+            <Image src={deleteIcon} alt="Botão de deletar item do carrinho" />
+          </button>
+        </div>
       </div>
     </div>
   );

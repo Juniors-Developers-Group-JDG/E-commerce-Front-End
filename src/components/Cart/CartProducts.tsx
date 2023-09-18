@@ -40,8 +40,12 @@ const CartProducts = ({ products = mockProducts }: CartProductsProps) => {
           totalPrice={product.totalPrice}
         />
       ))}
-      <div>
-        <p>Produtos: R$ {productsSum.toLocaleString('pt-BR')} </p>
+
+      <div className="py-6 text-[2.25em] float-right">
+        Produtos:{' '}
+        <span className="font-bold">
+          R$ {productsSum.toLocaleString('pt-BR')}
+        </span>
       </div>
     </div>
   );
