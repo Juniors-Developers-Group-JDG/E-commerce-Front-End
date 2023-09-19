@@ -1,5 +1,7 @@
 import Image from 'next/image';
 
+import cartImage from '@/assets/images/cart.svg';
+
 export interface CartSuggestionsProductItem {
   name: string;
   price: number;
@@ -14,8 +16,37 @@ const CartSuggestionsProduct = ({
   discount,
 }: CartSuggestionsProductItem) => {
   return (
-    <div>
-      <Image src={imageUrl} alt={`Imagem do produto ${name}`} />
+    <div className="py-4 px-5 bg-white rounded-lg border-[1px] border-[#879DB7] relative">
+      <Image
+        src={imageUrl}
+        alt={`Imagem do produto ${name}`}
+        width={210}
+        height={210}
+      />
+      {discount && (
+        <span className="absolute right-0 top-10 px-3 bg-[#000033] text-white text-[1.5625em]">{`-${discount}%`}</span>
+      )}
+      <div className="text-[1.125em] font-bold">
+        <h2 className="mb-12">{name}</h2>
+        <span className="flex justify-between">
+          R${' '}
+          {discount
+            ? (price - (price * discount) / 100).toLocaleString('pt-BR', {
+                style: 'decimal',
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              })
+            : price.toLocaleString('pt-BR')}
+          <button>
+            <Image
+              className="transition-all  cursor-pointer hover:scale-[1.1] max-lg:w-[35%] max-md:w-full"
+              src={cartImage}
+              width={30}
+              alt="Imagem carrinho de compras"
+            />
+          </button>
+        </span>
+      </div>
     </div>
   );
 };

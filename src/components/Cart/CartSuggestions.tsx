@@ -27,7 +27,7 @@ const mockProducts = [
 
 const CartSuggestions = ({ suggestions = mockProducts }) => {
   return (
-    <div className="flex flex-col items-center py-6 px-4 bg-[#ededed] rounded-xl gap-4 max-h-[640px] overflow-y-scroll">
+    <div className="flex flex-col items-center py-6 px-4 bg-[#ededed] rounded-xl gap-5 max-h-[640px] overflow-y-scroll">
       <h2 className="text-center text-[1.5em] mb-2">
         Esqueceu <span className="underline underline-offset-8">Isso</span>?
       </h2>
