@@ -30,7 +30,7 @@ const CartProducts = ({ products = mockProducts }: CartProductsProps) => {
   const productsSum = products.reduce((a, b) => a + b.totalPrice, 0);
 
   return (
-    <div className="bg-[#ededed] py-3 px-7 col-span-2 rounded-xl">
+    <div className="bg-[#ededed] py-3 px-7 col-span-2 rounded-xl shadow-[0px_0px_10px_3px_#2626261A]">
       {products.map(product => (
         <CartProduct
           name={product.name}

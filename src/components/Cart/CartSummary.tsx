@@ -1,6 +1,6 @@
 const CartSummary = () => {
   return (
-    <div className="flex flex-col gap-3 bg-[#ededed] rounded-xl py-6 px-4 text-[1.25em]">
+    <div className="flex flex-col gap-3 bg-[#ededed] rounded-xl py-6 px-4 text-[1.25em] shadow-[0_0_10px_rgb(0,0,0,0.2)]">
       <p className="flex justify-between">
         Produtos:{' '}
         <span className="font-bold">
