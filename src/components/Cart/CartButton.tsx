@@ -11,7 +11,7 @@ const CartButton = ({ children, type = 'NEUTRAL' }: CartButtonProps) => {
       style={{
         backgroundColor: `${type === 'SUCCESS' && '#2EE356'}`,
       }}
-      className="flex items-center justify-center p-1 bg-[#AFAFAF66] rounded-md min-h-[2.375em] min-w-[2.375em] transition-all hover:scale-[1.1]"
+      className="flex items-center justify-center p-1 bg-[#AFAFAF66] rounded-md h-[2.375em] w-[2.375em] transition-all hover:scale-[1.1] max-lg:h-[1.5em] max-lg:w-[1.5em]"
     >
       {children}
     </button>

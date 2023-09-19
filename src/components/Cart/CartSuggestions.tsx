@@ -29,7 +29,7 @@ const CartSuggestions = ({
   suggestions = mockProducts,
 }: CartSuggestionsProps) => {
   return (
-    <div className="flex flex-col items-center py-6 px-4 bg-[#ededed] rounded-xl gap-5 max-h-[640px] overflow-y-scroll shadow-[0_0_10px_rgb(0,0,0,0.2)]">
+    <div className="flex flex-col items-center py-6 px-4 bg-[#ededed] rounded-xl gap-5 max-h-[640px] max-xl:max-h-[500px] max-lg:max-h-[300px] overflow-y-scroll shadow-[0_0_10px_rgb(0,0,0,0.2)]">
       <h2 className="text-center text-[1.5em] mb-2">
         Esqueceu <span className="underline underline-offset-8">Isso</span>?
       </h2>

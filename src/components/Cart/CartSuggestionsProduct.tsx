@@ -20,14 +20,13 @@ const CartSuggestionsProduct = ({
       <Image
         src={imageUrl}
         alt={`Imagem do produto ${name}`}
-        width={210}
-        height={210}
+        className="w-[210px] h-[210px] max-xl:h-[180px] max-lg:h-[130px]"
       />
       {discount && (
-        <span className="absolute right-0 top-10 px-3 bg-[#000033] text-white text-[1.5625em]">{`-${discount}%`}</span>
+        <span className="absolute right-0 top-10  px-3 bg-[#000033] text-white text-[1.5625em]">{`-${discount}%`}</span>
       )}
       <div className="text-[1.125em] font-bold">
-        <h2 className="mb-12">{name}</h2>
+        <h2 className="mb-12 max-lg:mb-2">{name}</h2>
         <span className="flex justify-between">
           R${' '}
           {discount
@@ -39,7 +38,7 @@ const CartSuggestionsProduct = ({
             : price.toLocaleString('pt-BR')}
           <button>
             <Image
-              className="transition-all  cursor-pointer hover:scale-[1.1] max-lg:w-[35%] max-md:w-full"
+              className="transition-all cursor-pointer hover:scale-[1.1]"
               src={cartImage}
               width={30}
               alt="Imagem carrinho de compras"
