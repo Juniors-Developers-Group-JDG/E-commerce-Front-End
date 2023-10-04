@@ -3,7 +3,6 @@
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
 
-import arrowImage from '@/assets/images/arrow.svg';
 import headsetImage from '@/assets/images/headset.svg';
 import microphoneImage from '@/assets/images/microphone.svg';
 import mouseImage from '@/assets/images/mouse.svg';
@@ -18,20 +17,41 @@ const Product = () => {
     <main>
       <h1>Product {params.id}</h1>
       <div className="bg-gray-400/60 mx-5 my-5 rounded-lg shadow-md">
-        hsdbjsdv
+        <div className="w-[1256px] h-[532px] mx-4 my-4 justify-start items-start gap-7 inline-flex">
+          <div className="justify-start items-start gap-7 flex">
+            <div className="flex-col justify-start items-start gap-4 inline-flex">
+              <div className="w-[125px] h-[125px] p-3 bg-gray-500 rounded-md shadow border-2 border-cyan-600 flex-col justify-start items-start flex">
+                <Image
+                  className="self-stretch grow shrink basis-0 w-full h-full"
+                  src={projectorImage}
+                  alt="imagem de um projetor"
+                />
+              </div>
+              <div className="w-[125px] h-[125px] p-3 bg-gray-500 rounded-md flex-col justify-center items-center flex">
+                <Image
+                  className="self-stretch grow shrink basis-0 w-full h-full"
+                  src={mouseImage}
+                  alt="imagem de um mouse"
+                />
+              </div>
+            </div>
+            <div className="w-[500px] h-[500px] p-8 flex-col justify-center items-center inline-flex">
+              <Image
+                className="self-stretch grow shrink basis-0 w-full h-full"
+                src={microphoneImage}
+                alt="imagem de um microfone"
+              />
+            </div>
+          </div>
+        </div>
         <hr className="bg-gray-500 rounded-md mx-4 shadow-sm h-1" />
         <section className="my-[1em]">
-          <div className="text-[#000033] flex flex-col w-[92.5%] mx-auto">
+          <div className="text-[#000033] flex flex-col w-[92.5%] ml-8 text-left">
             <h3 className="font-bold text-[2.5em] max-md:text-[2em]">
               Outros Produtos
             </h3>
           </div>
           <div className="flex justify-around mt-[2em]">
-            <Image
-              src={arrowImage}
-              alt="Imagem seta para lado"
-              className="rotate-90 transition-all cursor-pointer hover:scale-[1.3]"
-            />
             <ProductComponent
               image={mouseImage}
               title="Mouse Sem Fio 2.4GHZ USB Preto - MO285"
@@ -76,11 +96,6 @@ const Product = () => {
                 />
               </div>
             </div>
-            <Image
-              src={arrowImage}
-              alt="Imagem seta para lado"
-              className="rotate-[270deg] transition-all cursor-pointer hover:scale-[1.3]"
-            />
           </div>
         </section>
         <hr className="bg-gray-500 rounded-md mx-4 shadow-sm h-1" />
