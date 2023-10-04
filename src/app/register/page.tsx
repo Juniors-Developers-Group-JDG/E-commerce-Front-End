@@ -1,5 +1,13 @@
+'use client';
+
+import RegisterForm from '@/components/Register/RegisterForm';
+
 const Register = () => {
-  return <h1>Register</h1>;
+  return (
+    <div className="bg-[#000033] flex flex-col items-center">
+      <RegisterForm />
+    </div>
+  );
 };
 
 export default Register;
