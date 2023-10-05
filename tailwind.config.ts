@@ -15,6 +15,7 @@ const config: Config = {
       },
       fontFamily: {
         montserrat: ['montserrat'],
+        calibri: ['calibri'],
       },
     },
   },
