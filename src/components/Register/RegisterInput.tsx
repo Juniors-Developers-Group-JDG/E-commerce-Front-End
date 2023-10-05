@@ -20,10 +20,10 @@ const RegisterInput = ({
   type,
   ...props
 }: RegisterInputProps) => {
-  const [isPasswordHidden, setIsPasswordHidden] = useState(false);
+  const [isPasswordShowing, setIsPasswordShowing] = useState(false);
 
   const handleTogglePasswordValueClick = () => {
-    setIsPasswordHidden(state => !state);
+    setIsPasswordShowing(state => !state);
   };
   return (
     <div className="mb-4 relative">
@@ -32,7 +32,7 @@ const RegisterInput = ({
       </span>
       <label htmlFor={id} />
       <input
-        type={isPassword && !isPasswordHidden ? 'text' : type}
+        type={isPassword && isPasswordShowing ? 'text' : type}
         name={id}
         id={id}
         {...props}
@@ -43,7 +43,7 @@ const RegisterInput = ({
           onClick={handleTogglePasswordValueClick}
           className="absolute flex justify-end items-center top-0 right-2 h-full"
         >
-          {isPasswordHidden ? (
+          {isPasswordShowing ? (
             <Image
               alt="Hide password button"
               src={hidePassword}
