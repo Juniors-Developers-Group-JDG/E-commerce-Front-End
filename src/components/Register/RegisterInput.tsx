@@ -33,7 +33,7 @@ const RegisterInput = ({
         name={id}
         id={id}
         {...props}
-        className="border-2 border-[#BBE1FA] rounded p-2 text-[.75em] w-[200px]  outline-[#3282B8]"
+        className="border-2 border-[#BBE1FA] rounded p-2 text-[.875em] w-full outline-[#3282B8] transition-all hover:border-[#3282B8]"
       />
       {isPassword && (
         <div
@@ -45,12 +45,14 @@ const RegisterInput = ({
               alt="Hide password button"
               src={hidePassword}
               className="cursor-pointer"
+              title="Esconder senha"
             />
           ) : (
             <Image
               alt="Show password button"
               src={showPassword}
               className="cursor-pointer"
+              title="Mostrar senha"
             />
           )}
         </div>
