@@ -1,10 +1,19 @@
-import Image from 'next/image';
+'use client';
 
-// redirect pra login
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { FormEvent } from 'react';
 
 import padlockImage from '@/assets/images/padlock.svg';
 
 const Forgot = () => {
+  const { push } = useRouter();
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    push('/login');
+  };
+
   return (
     <section className="min-h-[70%] bg-[#000033] flex justify-center items-center mt-[1em]">
       <div className="bg-[#ffffff] w-[31.25em] h-[18.75em] flex flex-col items-center max-md:text-[.9em]">
@@ -21,7 +30,7 @@ const Forgot = () => {
         <p className="font-calibri text-[#5F5F5F]">
           Insira o seu email para resetar a sua senha.
         </p>
-        <form className="">
+        <form onSubmit={handleSubmit}>
           <div className="relative mt-[1em] mb-[1em]">
             <label className="font-calibri absolute bg-[#ffffff] text-[.8em] font-bold left-[3%] bottom-[80%] px-[.5em]">
               Email
