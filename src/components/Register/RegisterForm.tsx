@@ -11,7 +11,7 @@ const RegisterForm = () => {
       <h2 className="font-bold text-[1.5em] text-[#000033] text-center mb-5">
         Crie sua conta
       </h2>
-      <form>
+      <form onSubmit={event => event.preventDefault()}>
         <RegisterInput type="text" label="Nome" id="name" placeholder="Nome" />
         <RegisterInput
           type="email"
