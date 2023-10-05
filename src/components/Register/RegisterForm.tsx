@@ -12,25 +12,23 @@ const RegisterForm = () => {
         Crie sua conta
       </h2>
       <form onSubmit={event => event.preventDefault()}>
-        <RegisterInput type="text" label="Nome" id="name" placeholder="Nome" />
+        <RegisterInput
+          type="text"
+          label="Nome"
+          id="name"
+          placeholder="Seu nome completo"
+        />
         <RegisterInput
           type="email"
           label="Email"
           id="email"
-          placeholder="Email"
+          placeholder="Seu melhor email"
         />
-        <RegisterInput
-          type="password"
-          label="Senha"
-          id="password"
-          placeholder="Senha"
-          isPassword
-        />
+        <RegisterInput type="password" label="Senha" id="password" isPassword />
         <RegisterInput
           type="password"
           label="Confirmar senha"
           id="confirmPassword"
-          placeholder="Confirmar senha"
           isPassword
         />
 
@@ -50,8 +48,10 @@ const RegisterForm = () => {
             checked={checkbox}
             onChange={({ target }) => setCheckbox(target.checked)}
           />
-          Declaro que concordo com a <strong>política de privacidade </strong>do
-          site.
+          <span>
+            Declaro que concordo com a <strong>política de privacidade</strong>{' '}
+            do site.
+          </span>
         </label>
 
         <button className="w-full text-white font-bold text-[.875em] bg-[#3282B8] py-1 rounded outline-[#BBE1FA] transition-all hover:scale-105">
