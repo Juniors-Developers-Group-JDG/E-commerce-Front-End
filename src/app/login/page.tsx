@@ -13,12 +13,12 @@ const Login = () => {
           </span>
           <form className="flex flex-col mb-[1em]">
             <input
-              className="w-[21.875em] h-[3.669em] bg-[#000000] text-[#ffffff] rounded-[.25em] mt-[1.313em] mb-[1.875em] p-[1em]"
+              className="w-[21.875em] h-[3.669em] bg-[#000000] text-[#ffffff] rounded-[.25em] mt-[1.313em] mb-[1.875em] p-[1em] outline-none hover:ring hover:ring-[#3282B8] focus:ring focus:ring-[#BBE1FA]"
               type="text"
               placeholder="Login"
             />
             <input
-              className="w-[21.875em] h-[3.669em] bg-[#000000] text-[#ffffff] rounded-[.25em] p-[1em]"
+              className="w-[21.875em] h-[3.669em] bg-[#000000] text-[#ffffff] rounded-[.25em] p-[1em] outline-none hover:ring hover:ring-[#3282B8] focus:ring focus:ring-[#BBE1FA]"
               type="text"
               placeholder="Senha"
             />
@@ -35,7 +35,7 @@ const Login = () => {
             />
           </form>
           <Link
-            className="font-calibri text-[1.125em] text-[#000033] transition-all hover:text-[#276690]"
+            className="font-calibri text-[1.125em] text-[#000033] transition-all hover:text-[#3D95D0] hover:underline"
             href={'/forgot'}
           >
             Esqueci a minha senha
@@ -47,7 +47,7 @@ const Login = () => {
           </h4>
           <span className="font-calibri text-[#3282B8]">Criar agora.</span>
           <Link
-            className="font-calibri bg-[#BBE1FA] font-bold text-[#000033] text-[2.25em] rounded-[.25em] text-center uppercase mt-[1.5em] transition-all hover:bg-[#9BD3F8]"
+            className="font-calibri bg-[#BBE1FA] font-bold text-[#000033] text-[2.25em] rounded-[.25em] text-center uppercase mt-[1.5em] transition-all hover:bg-[#3282B8]"
             href={'/register'}
           >
             Cadastre-se
