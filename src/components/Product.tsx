@@ -21,7 +21,7 @@ const Product = ({
   division,
 }: Props) => {
   return (
-    <div className="border-[1px] border-solid border-[#879DB7] rounded-[10px] flex flex-col w-[15.25em] min-h-[20%] relative transition-all cursor-pointer hover:scale-[1.1] max-xl:w-[12.25em] max-xl:mx-[1em]">
+    <div className="bg-white border-[1px] border-solid border-[#879DB7] rounded-[10px] flex flex-col w-[15.25em] min-h-[20%] relative transition-all cursor-pointer hover:scale-[1.1] max-xl:w-[12.25em] max-xl:mx-[1em]">
       {discount && (
         <div className="bg-[#000033] text-white w-1/4 absolute right-0 top-[5%] text-center">
           <span>-{discount}%</span>
