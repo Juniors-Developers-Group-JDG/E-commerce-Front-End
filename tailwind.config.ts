@@ -17,6 +17,10 @@ const config: Config = {
         montserrat: ['montserrat'],
         calibri: ['calibri'],
       },
+      boxShadow: {
+        'product-container': '0px 0px 12px 0px #26262666',
+        'product-miniature': '0px 0px 14px 0px #0F4C75B2',
+      },
     },
   },
   plugins: [],
