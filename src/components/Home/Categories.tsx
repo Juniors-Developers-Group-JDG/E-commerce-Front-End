@@ -163,6 +163,7 @@ const Categories = ({ categories = mockCategoriesData }: CategoriesProps) => {
             division="4"
             discount="20"
             olderPrice="30.00"
+            page="home"
           />
           <div className="contents max-md:hidden">
             <Product
@@ -172,6 +173,7 @@ const Categories = ({ categories = mockCategoriesData }: CategoriesProps) => {
               division="4"
               discount="50"
               olderPrice="2000.00"
+              page="home"
             />
             <Product
               image={headsetImage}
@@ -180,6 +182,7 @@ const Categories = ({ categories = mockCategoriesData }: CategoriesProps) => {
               division="10"
               discount="20"
               olderPrice="180.00"
+              page="home"
             />
             <div className="contents max-lg:hidden">
               <Product
@@ -189,6 +192,7 @@ const Categories = ({ categories = mockCategoriesData }: CategoriesProps) => {
                 division="3"
                 discount="25"
                 olderPrice="500.00"
+                page="home"
               />
               <Product
                 image={projectorImage}
@@ -197,6 +201,7 @@ const Categories = ({ categories = mockCategoriesData }: CategoriesProps) => {
                 division="3"
                 discount="20"
                 olderPrice="400.00"
+                page="home"
               />
             </div>
           </div>

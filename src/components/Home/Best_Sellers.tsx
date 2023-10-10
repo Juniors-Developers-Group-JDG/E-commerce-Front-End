@@ -95,6 +95,7 @@ const Best_Sellers = () => {
             division="4"
             discount="20"
             olderPrice="30.00"
+            page="home"
           />
           <div className="contents max-md:hidden">
             <Product
@@ -104,6 +105,7 @@ const Best_Sellers = () => {
               division="4"
               discount="50"
               olderPrice="2000.00"
+              page="home"
             />
             <Product
               image={headsetImage}
@@ -112,6 +114,7 @@ const Best_Sellers = () => {
               division="10"
               discount="20"
               olderPrice="180.00"
+              page="home"
             />
             <div className="contents max-lg:hidden">
               <Product
@@ -121,6 +124,7 @@ const Best_Sellers = () => {
                 division="3"
                 discount="25"
                 olderPrice="500.00"
+                page="home"
               />
               <Product
                 image={projectorImage}
@@ -129,6 +133,7 @@ const Best_Sellers = () => {
                 division="3"
                 discount="20"
                 olderPrice="400.00"
+                page="home"
               />
             </div>
           </div>
@@ -138,6 +143,15 @@ const Best_Sellers = () => {
             className="rotate-[270deg] transition-all cursor-pointer hover:scale-[1.3]"
           />
         </div>
+      </section>
+      <section className="bg-[#000033] h-[8.75em] flex items-center text-white font-bold text-justify text-[1.5em] max-lg:text-[1em] max-md:items-baseline max-md:flex-col max-md:text-[.85em]">
+        <p className="ml-[2em]">Frete grátis em compras acima de R$ 200,00</p>
+        <div className="w-[.25em] h-[5.75em] bg-white mx-[2.5em] max-md:opacity-0"></div>
+        <p>Envio em até 24 horas após o pagamento</p>
+        <div className="w-[.25em] h-[5.75em] bg-white mx-[2.5em] max-md:opacity-0"></div>
+        <p>Frete grátis em compras acima de R$ 200,00</p>
+        <div className="w-[.25em] h-[5.75em] bg-white mx-[2.5em] max-md:opacity-0"></div>
+        <p className="mr-[2em]">Envio em até 24 horas após o pagamento</p>
       </section>
     </article>
   );

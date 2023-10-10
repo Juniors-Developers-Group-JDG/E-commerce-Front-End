@@ -1,6 +1,9 @@
+'use client';
+
 import { Krona_One } from 'next/font/google';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
 
 import facebookImage from '@/assets/images/facebook.svg';
 import instagramImage from '@/assets/images/instagram.svg';
@@ -12,18 +15,31 @@ const krona_one = Krona_One({
   weight: '400',
 });
 
-const Footer = () => {
+interface designerType {
+  name: string;
+  link: string;
+}
+
+export const designer_mylena: designerType = {
+  name: 'Mylena Cardoso da Costa',
+  link: 'https://www.linkedin.com/in/mylena-costa-748160254/',
+};
+
+export const designer_thaissa: designerType = {
+  name: 'Thaissa Carvalho',
+  link: 'https://www.linkedin.com/in/thaissa-carvalho-dos-santos/',
+};
+
+export const designer_juan: designerType = {
+  name: 'Juan Garcia',
+  link: 'https://www.linkedin.com/in/juan-garcia-5b8951214/',
+};
+
+const Footer = ({ name, link }: designerType) => {
+  const [designer] = useState<designerType>({ name, link });
+
   return (
-    <footer>
-      <section className="bg-[#000033] h-[8.75em] flex items-center text-white font-bold text-justify text-[1.5em] max-lg:text-[1em] max-md:items-baseline max-md:flex-col max-md:text-[.85em] max-md:p-[1em]">
-        <p className="ml-[2em]">Frete grátis em compras acima de R$ 200,00</p>
-        <div className="w-[.25em] h-[5.75em] bg-white mx-[2.5em] max-md:opacity-0"></div>
-        <p>Envio em até 24 horas após o pagamento</p>
-        <div className="w-[.25em] h-[5.75em] bg-white mx-[2.5em] max-md:opacity-0"></div>
-        <p>Frete grátis em compras acima de R$ 200,00</p>
-        <div className="w-[.25em] h-[5.75em] bg-white mx-[2.5em] max-md:opacity-0"></div>
-        <p className="mr-[2em]">Envio em até 24 horas após o pagamento</p>
-      </section>
+    <footer className="mt-[2em]">
       <section className="my-[2em] flex w-[90%] mx-auto justify-between max-md:flex-col">
         <div className="self-center max-md:self-auto">
           <Link href="/">
@@ -119,7 +135,14 @@ const Footer = () => {
       </section>
       <section className="border-t-black border-t-[1px] border-t-solid flex justify-center p-[2em]">
         <span className="text-[1.5em] font-bold max-lg:text-[1em]">
-          Design por Mylena Cardoso da Costa
+          Design por{' '}
+          <Link
+            href={designer.link}
+            target="_blank"
+            className="transition-all cursor-pointer inline-block hover:scale-[1.01]"
+          >
+            {designer.name}
+          </Link>
         </span>
       </section>
     </footer>

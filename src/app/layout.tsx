@@ -2,7 +2,6 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Lato } from 'next/font/google';
 
-import Footer from '@/components/Layout/Footer';
 import Header from '@/components/Layout/Header';
 
 const lato = Lato({
@@ -26,7 +25,6 @@ export default function RootLayout({
       <body className={`${lato.variable}`}>
         <Header />
         {children}
-        <Footer />
       </body>
     </html>
   );
