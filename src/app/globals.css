@@ -27,3 +27,23 @@ body, html, #root {
   height: 100%;
   overflow-x: hidden;
 }
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none; 
+  cursor: pointer;
+  outline: none;
+  border-radius: 1em;
+  height: .3em;
+  background: #B8C5D5;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none; 
+  height: 1em;
+  width: 1em;
+  background-color: #000033;
+  border-radius: 50%;
+  border: none;
+}

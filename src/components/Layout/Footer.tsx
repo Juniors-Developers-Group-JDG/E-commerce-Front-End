@@ -35,6 +35,11 @@ export const designer_juan: designerType = {
   link: 'https://www.linkedin.com/in/juan-garcia-5b8951214/',
 };
 
+export const designer_rafael: designerType = {
+  name: 'Rafael Lopes',
+  link: 'https://www.linkedin.com/in/rafalopesdev/',
+};
+
 const Footer = ({ name, link }: designerType) => {
   const [designer] = useState<designerType>({ name, link });
 
