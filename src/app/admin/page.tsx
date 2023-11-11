@@ -177,7 +177,7 @@ const Admin = () => {
               </div>
               <button
                 disabled={loading}
-                className="mt-[1em] h-[2.813em] w-full bg-[#3282B8] font-bold text-[1.15em] text-[#ffffff] uppercase cursor-pointer transition-all hover:bg-[#276690] disabled:bg-[#788e9e]"
+                className="mt-[1em] h-[2.813em] w-full bg-[#3282B8] font-bold text-[1.15em] text-[#ffffff] uppercase cursor-pointer transition-all hover:bg-[#276690] disabled:bg-[#788e9e] disabled:cursor-not-allowed"
                 type="submit"
               >
                 {loading ? 'Carregando' : 'Adicionar Produto'}
