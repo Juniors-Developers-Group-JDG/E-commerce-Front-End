@@ -1,6 +1,7 @@
 'use client';
 import { FormEvent, useState } from 'react';
 
+import ImageForm from '@/components/Admin/ImageForm';
 import Footer, { designer_thaissa } from '@/components/Layout/Footer';
 
 enum Categories {
@@ -14,13 +15,27 @@ enum Categories {
   roteador = 'Roteador',
 }
 
+export type CreatedProduct = {
+  _id: string;
+  name: string;
+  description: string;
+  price: 0;
+  images: [string];
+  amount: 0;
+  discount: 0;
+  category: [string];
+  createdAt: string;
+};
+
 const Admin = () => {
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
   const [category, setCategory] = useState<string[]>(['Selecione a categoria']);
   const [amount, setAmount] = useState('');
   const [description, setDescription] = useState('');
-  const [isCreated, setIsCreated] = useState(false);
+  const [createdProduct, setCreatedProduct] = useState<CreatedProduct | null>(
+    null,
+  );
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -30,8 +45,8 @@ const Admin = () => {
   };
 
   const handleGetBackClick = () => {
-    setIsCreated(false);
     setError('');
+    setCreatedProduct(null);
   };
 
   const fetchOptions = {
@@ -69,12 +84,13 @@ const Admin = () => {
         fetchOptions,
       );
       if (response.status === 201) {
-        setIsCreated(true);
         setName('');
         setAmount('');
         setDescription('');
         setPrice('');
         setCategory(['Selecione a categoria']);
+        const data = await response.json();
+        setCreatedProduct(data.newProduct);
       } else throw new Error('Houve um erro ao criar o produto.');
     } catch (error) {
       if (error instanceof Error) setError(error.message);
@@ -86,21 +102,11 @@ const Admin = () => {
   return (
     <>
       <section className="min-h-[70%] bg-[#000033] flex justify-center items-center mt-[1em] ">
-        {isCreated ? (
-          <div className="bg-[#ffffff] px-8 py-16 w-[41.25em] h-[31.25em] flex flex-col items-center max-md:text-[.9em] relative">
-            <button
-              onClick={handleGetBackClick}
-              className="absolute top-0 right-0 py-3 px-6 bg-[#3282B8] font-bold text-[1.15em] text-[#ffffff] uppercase cursor-pointer transition-all hover:bg-[#276690] disabled:bg-[#788e9e]"
-            >
-              Voltar
-            </button>
-            <span className="absolute top-0 left-0 py-3 px-6 font-bold text-[1.15em] text-green-600">
-              Produto criado com sucesso!
-            </span>
-            <h2 className="font-bold text-[1.35em] mt-4">
-              Adicione a(s) imagem(ns) para seu produto
-            </h2>
-          </div>
+        {createdProduct ? (
+          <ImageForm
+            createdProduct={createdProduct}
+            handleGetBackClick={handleGetBackClick}
+          />
         ) : (
           <form
             onSubmit={handleProductSubmit}
