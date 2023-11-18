@@ -1,7 +1,9 @@
 import Image from 'next/image';
-import { useState, KeyboardEvent, MouseEvent } from 'react';
+import { useState, FormEvent, ChangeEvent, MouseEvent } from 'react';
 
 import { CreatedProduct } from '@/app/admin/page';
+
+import SuccessSVG from './SuccessSVG';
 
 type ImageFormProps = {
   createdProduct: CreatedProduct;
@@ -9,41 +11,108 @@ type ImageFormProps = {
 };
 
 const ImageForm = ({ createdProduct, handleGetBackClick }: ImageFormProps) => {
-  const [images, setImages] = useState<string[]>([]);
-  const [currentImage, setCurrentImage] = useState('');
+  const [images, setImages] = useState<File[]>([]);
+  const [imagePreviews, setImagePreviews] = useState<string[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
 
-  const isImageUrl = (url: string): boolean => {
-    return url.match(/\.(jpeg|jpg|gif|png|svg|webp)$/) != null;
-  };
+  const handleImageUploadButtonClick = (
+    event: MouseEvent<HTMLButtonElement>,
+  ) => {
+    event.preventDefault();
+    const imageInput = document.getElementById('images') as HTMLInputElement;
 
-  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
-    try {
-      if (event.key === 'Enter') {
-        event.preventDefault();
-        if (isImageUrl(currentImage)) {
-          setImages(prevImages => [...prevImages, currentImage]);
-          setCurrentImage('');
-          setError(null);
-        } else {
-          setCurrentImage('');
-          throw new Error('O link fornecido não pertence a uma imagem.');
-        }
-      }
-    } catch (error) {
-      if (error instanceof Error) setError(error.message);
+    if (imageInput) {
+      imageInput.click();
     }
   };
 
-  const handleImagePreviewClick = (event: MouseEvent<HTMLImageElement>) => {
-    const target = event.target as HTMLImageElement;
-    setImages(imgs =>
-      imgs.filter((img, index) => target.id !== `${img}${index}`),
+  const handleImageUpload = (event: ChangeEvent<HTMLInputElement>) => {
+    const { files } = event.target;
+
+    if (files) {
+      const hasNonImageFile = Array.from(files).some(
+        file => !file.type.match(/^image\//),
+      );
+
+      if (hasNonImageFile) {
+        throw new Error('Todos os arquivos devem ser imagens.');
+      }
+
+      const fileArray = Array.from(files);
+      const previewUrls = fileArray.map(file => URL.createObjectURL(file));
+
+      setImages(prevImages => [...prevImages, ...fileArray]);
+      setImagePreviews(prevPreviews => [...prevPreviews, ...previewUrls]);
+    }
+  };
+
+  const handleImageRemove = (indexToRemove: number) => {
+    setImagePreviews(prevPreviews =>
+      prevPreviews.filter((_, index) => index !== indexToRemove),
+    );
+
+    setImages(prevImages =>
+      prevImages.filter((_, index) => index !== indexToRemove),
     );
   };
 
-  const imagesSubmitHandler = async () => {};
+  const onImageSelect = (event: ChangeEvent<HTMLInputElement>) => {
+    try {
+      setError(null);
+      handleImageUpload(event);
+    } catch (error) {
+      if (error instanceof Error) {
+        setError(error.message);
+      }
+    }
+  };
+
+  const imagesSubmitHandler = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    setLoading(true);
+
+    try {
+      const responses: Response[] = await Promise.all(
+        images.map(async image => {
+          const formData = new FormData();
+          formData.append('image', image);
+          const response = await fetch(
+            `https://e-commerce-backend-am7w.onrender.com/api/products/images/${createdProduct._id}`,
+            {
+              method: 'POST',
+              body: formData,
+            },
+          );
+          console.log(await response.json());
+          return response;
+        }),
+      );
+      if (responses.every(response => response.ok)) setSuccess(true);
+    } catch (error) {
+      if (error instanceof Error) setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (success)
+    return (
+      <div className="bg-[#ffffff] flex flex-col justify-center items-center px-10 py-8 w-[41.25em] min-h-[30em] max-md:text-[.9em] relative">
+        <button
+          onClick={handleGetBackClick}
+          className="absolute top-0 right-0 py-3 px-6 bg-[#3282B8] font-bold text-[1.15em] text-[#ffffff] uppercase cursor-pointer transition-all hover:bg-[#276690] disabled:bg-[#788e9e]"
+        >
+          Voltar
+        </button>
+        <h1 className="font-bold text-[1.5rem] mb-8">
+          Produtos e imagens criados com sucesso!
+        </h1>
+        <SuccessSVG />
+      </div>
+    );
 
   return (
     <div className="bg-[#ffffff] px-10 py-8 w-[41.25em] min-h-[30em] flex flex-col max-md:text-[.9em] relative">
@@ -60,45 +129,45 @@ const ImageForm = ({ createdProduct, handleGetBackClick }: ImageFormProps) => {
         Adicione a(s) imagem(ns) para seu produto
       </h2>
 
-      {images.length > 0 ? (
-        <div className="grid grid-cols-4 gap-2 mt-2">
-          {images.map((i, index) => (
+      {imagePreviews.length ? (
+        <div className="grid grid-cols-4 mt-4 gap-4">
+          {imagePreviews.map((previewUrl, index) => (
             <Image
-              id={`${i}${index}`}
               className="cursor-pointer"
-              loader={() => i}
               key={index}
-              src={i}
-              width={100}
-              height={100}
-              alt={`Imagem ${index} do produto`}
-              onClick={handleImagePreviewClick}
+              src={previewUrl}
+              alt={`Preview ${index}`}
+              width={110}
+              height={110}
               title="Clique na imagem para excluí-la"
-              unoptimized
+              onClick={() => handleImageRemove(index)}
             />
           ))}
         </div>
       ) : (
-        <span className="font-bold mt-4">Nenhuma imagem adicionada.</span>
+        <span className="mt-8 font-bold">Sem imagens selecionadas.</span>
       )}
-
       <form className="mt-auto flex flex-col" onSubmit={imagesSubmitHandler}>
-        <label className="font-medium" htmlFor="images">
-          Insira os links das imagens e tecle{' '}
-          <strong className="text-green-600">ENTER</strong>
-        </label>
+        <button
+          className="self-start py-3 px-6 bg-[#fff] font-bold text-[1.15em] text-[#3282B8] border border-[#3282B8] uppercase cursor-pointer transition-all hover:text-[#276690] hover:border-[#276690] disabled:bg-[#788e9e]"
+          onClick={handleImageUploadButtonClick}
+        >
+          Insira as imagens aqui
+        </button>
         <input
-          className="border p-1 mb-6"
+          className="hidden"
+          type="file"
+          multiple
           id="images"
-          value={currentImage}
-          onChange={({ target }) => setCurrentImage(target.value)}
-          onKeyDown={handleKeyDown}
+          onChange={onImageSelect}
         />
         <button
+          disabled={loading}
+          id="submitBtn"
           type="submit"
-          className="py-3 px-6 bg-[#3282B8] font-bold text-[1.15em] text-[#ffffff] uppercase cursor-pointer transition-all hover:bg-[#276690] disabled:bg-[#788e9e]"
+          className="py-3 mt-4 px-6 bg-[#3282B8] font-bold text-[1.15em] text-[#ffffff] uppercase cursor-pointer transition-all hover:bg-[#276690] disabled:bg-[#788e9e]"
         >
-          Enviar todas as imagens
+          {loading ? 'Carregando' : 'Enviar todas as imagens'}
         </button>
       </form>
 

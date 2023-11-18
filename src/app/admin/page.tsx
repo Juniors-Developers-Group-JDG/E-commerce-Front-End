@@ -38,7 +38,6 @@ const Admin = () => {
   );
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const test = 1;
 
   const handleProductSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -61,7 +60,7 @@ const Admin = () => {
       description,
       amount,
       category,
-      images: '',
+      images: [],
       discount: 0,
     }),
   };
@@ -117,7 +116,7 @@ const Admin = () => {
   return (
     <>
       <section className="min-h-[70%] bg-[#000033] flex justify-center items-center mt-[1em] ">
-        {test ? (
+        {createdProduct ? (
           <ImageForm
             createdProduct={createdProduct}
             handleGetBackClick={handleGetBackClick}
@@ -125,7 +124,7 @@ const Admin = () => {
         ) : (
           <form
             onSubmit={handleProductSubmit}
-            className="bg-[#ffffff] w-[41.25em] flex flex-col items-center max-md:text-[.9em]"
+            className="bg-[#ffffff] w-[41.25em] min-h-[32.5em] flex flex-col items-center max-md:text-[.9em]"
           >
             <div className="mt-[1.8em] max-md:mt-0">
               <div className="flex gap-[4em] mb-[2.5em] max-md:gap-0 max-md:mb-0 max-md:flex-col">
