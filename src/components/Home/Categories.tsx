@@ -2,14 +2,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import arrowImage from '@/assets/images/arrow.svg';
+import defaultProductImage from '@/assets/images/defaultProductImage.png';
 import expandLeft from '@/assets/images/expand-left.svg';
 import expandRight from '@/assets/images/expand-right.svg';
-import headsetImage from '@/assets/images/headset.svg';
-import microphoneImage from '@/assets/images/microphone.svg';
-import mouseImage from '@/assets/images/mouse.svg';
-import projectorImage from '@/assets/images/projector.svg';
-import windowsImage from '@/assets/images/windows.svg';
 import CategoriesExpandButton from '@/components/UI/CategoriesExpandButton';
+import { Product as ProductModel } from '@/models/product';
 
 import CategoryCard from '../CategoryCard';
 import Product from '../Product';
@@ -20,6 +17,9 @@ interface Category {
 
 interface CategoriesProps {
   categories?: Category[];
+  data: ProductModel[] | undefined;
+  isFetching: boolean;
+  isError: boolean;
 }
 
 const mockCategoriesData = [
@@ -40,53 +40,12 @@ const mockCategoriesData = [
   },
 ];
 
-// const mockProductsData = [
-//   {
-//     image: mouseImage,
-//     title: 'Mouse Sem Fio 2.4GHZ USB Preto - MO285',
-//     price: '24.00',
-//     division: '4',
-//     olderPrice: '30.00',
-//     discount: '20',
-//   },
-//   {
-//     image: windowsImage,
-//     title:
-//       'Microsoft Windows 11 Pro 32/64 Bits ESD - Digital para Download - FQC-10572',
-//     price: '1000.00',
-//     division: '4',
-//     olderPrice: '2000.00',
-//     discount: '50',
-//   },
-//   {
-//     image: headsetImage,
-//     title:
-//       'Fortrek H2 - Headset Gamer Pro Microfones e Fones de Ouvido, Preto (Leds Azul)',
-//     price: '150.00',
-//     division: '10',
-//     olderPrice: '180.00',
-//     discount: '20',
-//   },
-//   {
-//     image: microphoneImage,
-//     title: 'HyperX Microfone Gamer QuadCast',
-//     price: '375.00',
-//     division: '3',
-//     olderPrice: '500.00',
-//     discount: '25',
-//   },
-//   {
-//     image: projectorImage,
-//     title:
-//       'Mini Projetor Portatil 5G Wifi 6 Bluetooth 5.0 Android 11, Projetor 4K 1080P Full HD Suporte 8000 Lumens',
-//     price: '300.00',
-//     division: '3',
-//     olderPrice: '400.00',
-//     discount: '20',
-//   },
-// ];
-
-const Categories = ({ categories = mockCategoriesData }: CategoriesProps) => {
+const Categories = ({
+  categories = mockCategoriesData,
+  data,
+  isFetching,
+  isError,
+}: CategoriesProps) => {
   return (
     <article>
       <div className="bg-[#000033] mt-12 pt-6 shadow-[inset_0_-5rem_0_rgba(256,256,256,1)]">
@@ -145,65 +104,34 @@ const Categories = ({ categories = mockCategoriesData }: CategoriesProps) => {
             alt="Imagem seta para lado"
             className="rotate-90 transition-all cursor-pointer hover:scale-[1.3]"
           />
-          {/* {mockProductsData.map(product => (
-            <Product
-              key={product.title}
-              title={product.title}
-              price={product.price}
-              image={product.image}
-              discount={product.discount}
-              division={product.division}
-              olderPrice={product.olderPrice}
-            />
-          ))} */}
-          <Product
-            image={mouseImage}
-            title="Mouse Sem Fio 2.4GHZ USB Preto - MO285"
-            price="24.00"
-            division="4"
-            discount="20"
-            olderPrice="30.00"
-            page="home"
-          />
-          <div className="contents max-md:hidden">
-            <Product
-              image={windowsImage}
-              title="Microsoft Windows 11 Pro 32/64 Bits ESD - Digital para Download - FQC-10572"
-              price="1000.00"
-              division="4"
-              discount="50"
-              olderPrice="2000.00"
-              page="home"
-            />
-            <Product
-              image={headsetImage}
-              title="Fortrek H2 - Headset Gamer Pro Microfones e Fones de Ouvido, Preto (Leds Azul)"
-              price="150.00"
-              division="10"
-              discount="20"
-              olderPrice="180.00"
-              page="home"
-            />
-            <div className="contents max-lg:hidden">
-              <Product
-                image={microphoneImage}
-                title="HyperX Microfone Gamer QuadCast"
-                price="375.00"
-                division="3"
-                discount="25"
-                olderPrice="500.00"
-                page="home"
-              />
-              <Product
-                image={projectorImage}
-                title="Mini Projetor Portatil 5G Wifi 6 Bluetooth 5.0 Android 11, Projetor 4K 1080P Full HD Suporte 8000 Lumens, "
-                price="300.00"
-                division="3"
-                discount="20"
-                olderPrice="400.00"
-                page="home"
-              />
-            </div>
+          <div className="flex w-full justify-evenly">
+            {isFetching &&
+              !data &&
+              [1, 2, 3, 4, 5].map((_, index) => (
+                <Product
+                  key={index * 3213125745}
+                  title="Carregando..."
+                  price="Carregando..."
+                  image={defaultProductImage}
+                  discount=""
+                  division=""
+                  olderPrice=""
+                />
+              ))}
+            {data
+              ?.slice(0, 5)
+              .map(prod => (
+                <Product
+                  key={prod._id}
+                  title={prod.name}
+                  price={prod.price?.toString()}
+                  image={prod.images[0]}
+                  discount=""
+                  division=""
+                  olderPrice=""
+                />
+              ))}
+            {isError && <p>Algo deu errado, tente recarregar a página</p>}
           </div>
           <Image
             src={arrowImage}

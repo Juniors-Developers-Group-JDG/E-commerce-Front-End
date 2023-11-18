@@ -1,16 +1,15 @@
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 
 import cartImage from '@/assets/images/cart.svg';
 import plusImage from '@/assets/images/plus.svg';
 
 interface Props {
-  image: string;
+  image: string | StaticImageData;
   title: string;
   price: string;
   olderPrice?: string;
   discount?: string;
   division?: string;
-  page?: 'home' | 'product';
 }
 
 const Product = ({
@@ -20,25 +19,23 @@ const Product = ({
   discount,
   olderPrice,
   division,
-  page,
 }: Props) => {
   return (
-    <div
-      className={`bg-white border-[1px] border-solid border-[#879DB7] rounded-[10px] flex flex-col min-h-[20%] relative transition-all cursor-pointer hover:scale-[1.1] max-xl:w-[12.25em] max-xl:mx-[1em] ${
-        page === 'home' ? 'w-[15.25em]' : 'w-auto'
-      }`}
-    >
+    <div className="bg-white border-[1px] w-fit max-w-[15.25em] border-solid border-[#879DB7] rounded-[10px] flex flex-col min-h-[20%] relative transition-all cursor-pointer hover:scale-[1.1] max-xl:w-[12.25em] max-xl:mx-[1em]">
       {discount && (
         <div className="bg-[#000033] text-white w-1/4 absolute right-0 top-[5%] text-center">
           <span>-{discount}%</span>
         </div>
       )}
       <Image
-        className="self-center mt-[1.2em] w-max h-[40%]"
+        className="self-center mt-[1.2em] p-[.5em]"
         src={image}
         alt={title}
+        width={242}
+        height={242}
+        style={{ width: '15.125em', height: '15.125em' }}
       />
-      <div className="flex flex-col bottom-0 relative h-full mt-[1em]">
+      <div className="flex flex-col bottom-0 max-w-[15em] relative flex-1">
         <span className="py-0 px-[1em]">
           {title.length > 85 ? title.slice(0, 85) + '...' : title}
         </span>

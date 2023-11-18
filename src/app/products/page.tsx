@@ -4,15 +4,12 @@ import { Inter } from 'next/font/google';
 import Image from 'next/image';
 
 import checkImage from '@/assets/images/check.svg';
-import headsetImage from '@/assets/images/headset.svg';
-import microphoneImage from '@/assets/images/microphone.svg';
-import mouseImage from '@/assets/images/mouse.svg';
+import defaultProductImage from '@/assets/images/defaultProductImage.png';
 import productsStarBlueImage from '@/assets/images/productsStarBlue.svg';
 import productsStarGrayImage from '@/assets/images/productsStarGray.svg';
-import projectorImage from '@/assets/images/projector.svg';
-import windowsImage from '@/assets/images/windows.svg';
 import Footer, { designer_rafael } from '@/components/Layout/Footer';
 import Product from '@/components/Product';
+import useQueryGetProducts from '@/hooks/useQueryGetProducts';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -20,6 +17,8 @@ const inter = Inter({
 });
 
 const Products = () => {
+  const { data, isFetching, isError } = useQueryGetProducts();
+
   const checkFilter = (e: React.MouseEvent) => {
     (
       (e.currentTarget as HTMLDivElement).children[0]
@@ -45,7 +44,7 @@ const Products = () => {
 
   return (
     <>
-      <main className={`min-h-[70%] ${inter.className} mt-[3em] flex-1`}>
+      <main className={`${inter.className} mt-[3em] flex-1`}>
         <section className="max-w-[80%] mx-auto">
           <h2 className="text-[3em] flex justify-center mb-[.5em]">Produtos</h2>
           <section className="mb-[2em]">
@@ -264,56 +263,34 @@ const Products = () => {
             </div>
           </section>
         </section>
-        <div className="flex justify-around mt-[2em] mx-auto max-w-[85%]">
-          <Product
-            image={mouseImage}
-            title="Mouse Sem Fio 2.4GHZ USB Preto - MO285"
-            price="24.00"
-            division="4"
-            discount="20"
-            olderPrice="30.00"
-            page="home"
-          />
-          <div className="contents max-md:hidden">
-            <Product
-              image={windowsImage}
-              title="Microsoft Windows 11 Pro 32/64 Bits ESD - Digital para Download - FQC-10572"
-              price="1000.00"
-              division="4"
-              discount="50"
-              olderPrice="2000.00"
-              page="home"
-            />
-            <Product
-              image={headsetImage}
-              title="Fortrek H2 - Headset Gamer Pro Microfones e Fones de Ouvido, Preto (Leds Azul)"
-              price="150.00"
-              division="10"
-              discount="20"
-              olderPrice="180.00"
-              page="home"
-            />
-            <div className="contents max-lg:hidden">
+        <div className="flex w-[85%] justify-evenly mt-[2em] mx-auto gap-[1em]">
+          {isFetching &&
+            !data &&
+            [1, 2, 3, 4, 5].map((_, index) => (
               <Product
-                image={microphoneImage}
-                title="HyperX Microfone Gamer QuadCast"
-                price="375.00"
-                division="3"
-                discount="25"
-                olderPrice="500.00"
-                page="home"
+                key={index * 3213125745}
+                title="Carregando..."
+                price="Carregando..."
+                image={defaultProductImage}
+                discount=""
+                division=""
+                olderPrice=""
               />
+            ))}
+          {data
+            ?.slice(0, 5)
+            .map(prod => (
               <Product
-                image={projectorImage}
-                title="Mini Projetor Portatil 5G Wifi 6 Bluetooth 5.0 Android 11, Projetor 4K 1080P Full HD Suporte 8000 Lumens, "
-                price="300.00"
-                division="3"
-                discount="20"
-                olderPrice="400.00"
-                page="home"
+                key={prod._id}
+                title={prod.name}
+                price={prod.price?.toString()}
+                image={prod.images[0]}
+                discount=""
+                division=""
+                olderPrice=""
               />
-            </div>
-          </div>
+            ))}
+          {isError && <p>Algo deu errado, tente recarregar a página</p>}
         </div>
       </main>
       <Footer name={designer_rafael.name} link={designer_rafael.link} />

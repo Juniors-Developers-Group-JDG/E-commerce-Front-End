@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Lato } from 'next/font/google';
 
 import Header from '@/components/Layout/Header';
+import ReactQueryProviderUseClient from '@/providers/ReactQueryProviderUseClient';
 
 const lato = Lato({
   subsets: ['latin'],
@@ -23,8 +24,10 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className={`${lato.variable} flex flex-col`}>
-        <Header />
-        {children}
+        <ReactQueryProviderUseClient>
+          <Header />
+          {children}
+        </ReactQueryProviderUseClient>
       </body>
     </html>
   );
