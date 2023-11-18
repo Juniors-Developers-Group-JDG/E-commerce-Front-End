@@ -38,6 +38,7 @@ const Admin = () => {
   );
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const test = 1;
 
   const handleProductSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -65,35 +66,49 @@ const Admin = () => {
     }),
   };
 
+  const validateInput = () => {
+    if (
+      !name ||
+      !price ||
+      !category ||
+      category[0] === 'Selecione a categoria' ||
+      !amount ||
+      !description
+    ) {
+      throw new Error('Preencha todos os campos corretamente.');
+    }
+  };
+
+  const resetForm = () => {
+    setName('');
+    setAmount('');
+    setDescription('');
+    setPrice('');
+    setCategory(['Selecione a categoria']);
+  };
+
   const createProduct = async () => {
     setLoading(true);
     setError('');
+
     try {
-      if (
-        !name ||
-        !price ||
-        !category ||
-        category[0] === 'Selecione a categoria' ||
-        !amount ||
-        !description
-      ) {
-        throw new Error('Preencha todos os campos corretamente.');
-      }
+      validateInput();
       const response = await fetch(
         'https://e-commerce-backend-am7w.onrender.com/api/products/create/',
         fetchOptions,
       );
-      if (response.status === 201) {
-        setName('');
-        setAmount('');
-        setDescription('');
-        setPrice('');
-        setCategory(['Selecione a categoria']);
-        const data = await response.json();
-        setCreatedProduct(data.newProduct);
-      } else throw new Error('Houve um erro ao criar o produto.');
+
+      if (!response.ok) {
+        throw new Error('Houve um erro ao criar o produto.');
+      }
+
+      const data = await response.json();
+      setCreatedProduct(data.newProduct);
+      resetForm();
     } catch (error) {
-      if (error instanceof Error) setError(error.message);
+      if (error instanceof Error) {
+        setError(error.message);
+      }
     } finally {
       setLoading(false);
     }
@@ -102,7 +117,7 @@ const Admin = () => {
   return (
     <>
       <section className="min-h-[70%] bg-[#000033] flex justify-center items-center mt-[1em] ">
-        {createdProduct ? (
+        {test ? (
           <ImageForm
             createdProduct={createdProduct}
             handleGetBackClick={handleGetBackClick}
@@ -110,7 +125,7 @@ const Admin = () => {
         ) : (
           <form
             onSubmit={handleProductSubmit}
-            className="bg-[#ffffff] w-[41.25em] h-[31.25em] flex flex-col items-center max-md:text-[.9em]"
+            className="bg-[#ffffff] w-[41.25em] flex flex-col items-center max-md:text-[.9em]"
           >
             <div className="mt-[1.8em] max-md:mt-0">
               <div className="flex gap-[4em] mb-[2.5em] max-md:gap-0 max-md:mb-0 max-md:flex-col">
