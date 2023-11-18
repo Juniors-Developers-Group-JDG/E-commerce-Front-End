@@ -7,7 +7,7 @@ import Footer, { designer_thaissa } from '@/components/Layout/Footer';
 const Login = () => {
   return (
     <>
-      <section className="min-h-[70%] flex items-center">
+      <section className="flex-1 min-h-[70%] flex items-center">
         <div className="flex justify-around w-full max-md:flex-col max-md:items-center max-md:text-[.8em] max-md:gap-[4em] max-md:my-[4em]">
           <div>
             <h4 className="text-[3em] font-calibri leading-[.8em]">

@@ -45,7 +45,7 @@ const Products = () => {
 
   return (
     <>
-      <main className={`min-h-[70%] ${inter.className} mt-[3em]`}>
+      <main className={`min-h-[70%] ${inter.className} mt-[3em] flex-1`}>
         <section className="max-w-[80%] mx-auto">
           <h2 className="text-[3em] flex justify-center mb-[.5em]">Produtos</h2>
           <section className="mb-[2em]">

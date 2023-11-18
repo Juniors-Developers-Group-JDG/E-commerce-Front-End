@@ -17,7 +17,7 @@ const Forgot = () => {
 
   return (
     <>
-      <section className="min-h-[70%] bg-[#000033] flex justify-center items-center mt-[1em]">
+      <section className="flex-1 min-h-[70%] bg-[#000033] flex justify-center items-center mt-[1em]">
         <div className="bg-[#ffffff] w-[31.25em] h-[18.75em] flex flex-col items-center max-md:text-[.9em]">
           <Image
             className="mt-[2em] mb-[.5em]"

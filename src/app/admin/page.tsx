@@ -15,7 +15,7 @@ const Admin = () => {
 
   return (
     <>
-      <section className="min-h-[70%] bg-[#000033] flex justify-center items-center mt-[1em]">
+      <section className="flex-1 min-h-[70%] bg-[#000033] flex justify-center items-center mt-[1em]">
         <form
           onSubmit={handleSubmit}
           className="bg-[#ffffff] w-[41.25em] h-[31.25em] flex flex-col items-center max-md:text-[.9em]"

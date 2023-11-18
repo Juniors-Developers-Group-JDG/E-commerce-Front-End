@@ -44,7 +44,7 @@ const Footer = ({ name, link }: designerType) => {
   const [designer] = useState<designerType>({ name, link });
 
   return (
-    <footer className="mt-[2em]">
+    <footer className="mt-[2em] relative bottom-0">
       <section className="my-[2em] flex w-[90%] mx-auto justify-between max-md:flex-col">
         <div className="self-center max-md:self-auto">
           <Link href="/">

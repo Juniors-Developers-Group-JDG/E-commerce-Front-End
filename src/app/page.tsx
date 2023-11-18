@@ -8,7 +8,7 @@ import Footer, { designer_mylena } from '@/components/Layout/Footer';
 
 const Home = () => {
   return (
-    <main>
+    <main className="flex-1">
       <Banner />
       <Categories />
       <AppStore />

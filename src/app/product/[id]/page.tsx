@@ -53,7 +53,7 @@ const Product = () => {
 
   return (
     <>
-      <main className="max-w-[75em] mx-auto bg-[#EDEDED] my-5 p-8 rounded-lg shadow-product-container">
+      <main className="flex-1 max-w-[75em] mx-auto bg-[#EDEDED] my-5 p-8 rounded-lg shadow-product-container">
         <section className="w-full justify-start items-start inline-flex flex-row max-lg:flex-col">
           <div className="justify-center flex flex-row items-start w-full max-lg:items-center max-lg:flex-col">
             <div className="flex-col justify-start items-start gap-4 inline-flex max-lg:flex-row">

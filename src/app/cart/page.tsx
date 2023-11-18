@@ -8,7 +8,7 @@ import Footer, { designer_juan } from '@/components/Layout/Footer';
 const Cart = () => {
   return (
     <>
-      <main className="w-[95%] px-12 max-md:px-6 mt-6 mx-auto">
+      <main className="flex-1 w-[95%] px-12 max-md:px-6 mt-6 mx-auto">
         <h1 className="font-bold text-[2.25em] max-md:text-[1.5em] underline underline-offset-8">
           Meu Carrinho
         </h1>

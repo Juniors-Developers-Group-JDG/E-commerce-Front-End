@@ -22,7 +22,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
-      <body className={`${lato.variable}`}>
+      <body className={`${lato.variable} flex flex-col`}>
         <Header />
         {children}
       </body>
