@@ -10,10 +10,8 @@ const useQueryGetProducts = () => {
     queryKey: ['products'],
     queryFn: async () => {
       const { data } = await axios.get(URL);
-      console.log(data);
       return data;
     },
-    refetchOnWindowFocus: false,
   });
   return { data, isFetching, isError };
 };

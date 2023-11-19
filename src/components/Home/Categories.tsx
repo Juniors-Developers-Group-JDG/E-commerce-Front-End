@@ -1,15 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import arrowImage from '@/assets/images/arrow.svg';
-import defaultProductImage from '@/assets/images/defaultProductImage.png';
 import expandLeft from '@/assets/images/expand-left.svg';
 import expandRight from '@/assets/images/expand-right.svg';
 import CategoriesExpandButton from '@/components/UI/CategoriesExpandButton';
-import { Product as ProductModel } from '@/models/product';
 
 import CategoryCard from '../CategoryCard';
-import Product from '../Product';
+import SwiperHome from './SwiperHome';
 
 interface Category {
   label: string;
@@ -17,9 +14,6 @@ interface Category {
 
 interface CategoriesProps {
   categories?: Category[];
-  data: ProductModel[] | undefined;
-  isFetching: boolean;
-  isError: boolean;
 }
 
 const mockCategoriesData = [
@@ -40,12 +34,7 @@ const mockCategoriesData = [
   },
 ];
 
-const Categories = ({
-  categories = mockCategoriesData,
-  data,
-  isFetching,
-  isError,
-}: CategoriesProps) => {
+const Categories = ({ categories = mockCategoriesData }: CategoriesProps) => {
   return (
     <article>
       <div className="bg-[#000033] mt-12 pt-6 shadow-[inset_0_-5rem_0_rgba(256,256,256,1)]">
@@ -99,45 +88,7 @@ const Categories = ({
           </div>
         </div>
         <div className="flex justify-around mt-[2em]">
-          <Image
-            src={arrowImage}
-            alt="Imagem seta para lado"
-            className="rotate-90 transition-all cursor-pointer hover:scale-[1.3]"
-          />
-          <div className="flex w-full justify-evenly">
-            {isFetching &&
-              !data &&
-              [1, 2, 3, 4, 5].map((_, index) => (
-                <Product
-                  key={index * 3213125745}
-                  title="Carregando..."
-                  price="Carregando..."
-                  image={defaultProductImage}
-                  discount=""
-                  division=""
-                  olderPrice=""
-                />
-              ))}
-            {data
-              ?.slice(0, 5)
-              .map(prod => (
-                <Product
-                  key={prod._id}
-                  title={prod.name}
-                  price={prod.price?.toString()}
-                  image={prod.images[0]}
-                  discount=""
-                  division=""
-                  olderPrice=""
-                />
-              ))}
-            {isError && <p>Algo deu errado, tente recarregar a página</p>}
-          </div>
-          <Image
-            src={arrowImage}
-            alt="Imagem seta para lado"
-            className="rotate-[270deg] transition-all cursor-pointer hover:scale-[1.3]"
-          />
+          <SwiperHome />
         </div>
       </div>
     </article>

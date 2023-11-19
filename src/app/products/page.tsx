@@ -4,7 +4,6 @@ import { Inter } from 'next/font/google';
 import Image from 'next/image';
 
 import checkImage from '@/assets/images/check.svg';
-import defaultProductImage from '@/assets/images/defaultProductImage.png';
 import productsStarBlueImage from '@/assets/images/productsStarBlue.svg';
 import productsStarGrayImage from '@/assets/images/productsStarGray.svg';
 import Footer, { designer_rafael } from '@/components/Layout/Footer';
@@ -263,22 +262,12 @@ const Products = () => {
             </div>
           </section>
         </section>
-        <div className="flex w-[85%] justify-evenly mt-[2em] mx-auto gap-[1em]">
-          {isFetching &&
-            !data &&
-            [1, 2, 3, 4, 5].map((_, index) => (
-              <Product
-                key={index * 3213125745}
-                title="Carregando..."
-                price="Carregando..."
-                image={defaultProductImage}
-                discount=""
-                division=""
-                olderPrice=""
-              />
-            ))}
+        <div className="flex w-[85%] justify-evenly mt-[2em] mx-auto gap-[1em] flex-wrap">
+          {isFetching && !data && (
+            <div className="w-[5em] h-[5em] border-solid border-[.65em] border-[#f1f1f1] border-t-[#000033] rounded-full animate-spin"></div>
+          )}
           {data
-            ?.slice(0, 5)
+            ?.slice(0, 12)
             .map(prod => (
               <Product
                 key={prod._id}
@@ -290,7 +279,11 @@ const Products = () => {
                 olderPrice=""
               />
             ))}
-          {isError && <p>Algo deu errado, tente recarregar a página</p>}
+          {isError && (
+            <p className="text-[1.2em] font-bold text-center">
+              Algo deu errado, tente recarregar a página.
+            </p>
+          )}
         </div>
       </main>
       <Footer name={designer_rafael.name} link={designer_rafael.link} />

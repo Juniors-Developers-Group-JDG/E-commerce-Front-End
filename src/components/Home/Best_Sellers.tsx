@@ -1,21 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import arrowImage from '@/assets/images/arrow.svg';
-import defaultProductImage from '@/assets/images/defaultProductImage.png';
 import jblImage from '@/assets/images/jbl.svg';
 import lineImage from '@/assets/images/line.svg';
-import { Product as ProductModel } from '@/models/product';
 
-import Product from '../Product';
+import SwiperHome from './SwiperHome';
 
-interface Props {
-  data: ProductModel[] | undefined;
-  isFetching: boolean;
-  isError: boolean;
-}
-
-const Best_Sellers = ({ data, isFetching, isError }: Props) => {
+const Best_Sellers = () => {
   return (
     <article className="my-[2em]">
       <section className="flex flex-col text-[#000033] text-center my-8 gap-4">
@@ -86,45 +77,7 @@ const Best_Sellers = ({ data, isFetching, isError }: Props) => {
           </div>
         </div>
         <div className="flex justify-around mt-[2em]">
-          <Image
-            src={arrowImage}
-            alt="Imagem seta para lado"
-            className="rotate-90 transition-all cursor-pointer hover:scale-[1.3]"
-          />
-          <div className="flex w-full justify-evenly">
-            {isFetching &&
-              !data &&
-              [1, 2, 3, 4, 5].map((_, index) => (
-                <Product
-                  key={index * 3213125745}
-                  title="Carregando..."
-                  price="Carregando..."
-                  image={defaultProductImage}
-                  discount=""
-                  division=""
-                  olderPrice=""
-                />
-              ))}
-            {data
-              ?.slice(0, 5)
-              .map(prod => (
-                <Product
-                  key={prod._id}
-                  title={prod.name}
-                  price={prod.price?.toString()}
-                  image={prod.images[0]}
-                  discount=""
-                  division=""
-                  olderPrice=""
-                />
-              ))}
-            {isError && <p>Algo deu errado, tente recarregar a página</p>}
-          </div>
-          <Image
-            src={arrowImage}
-            alt="Imagem seta para lado"
-            className="rotate-[270deg] transition-all cursor-pointer hover:scale-[1.3]"
-          />
+          <SwiperHome />
         </div>
       </section>
       <section className="bg-[#000033] h-[8.75em] flex items-center text-white font-bold text-justify text-[1.5em] max-lg:text-[1em] max-md:items-baseline max-md:flex-col max-md:text-[.85em]">
