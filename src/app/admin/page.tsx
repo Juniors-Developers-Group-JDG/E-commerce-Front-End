@@ -1,4 +1,5 @@
 'use client';
+import axios from 'axios';
 import { FormEvent, useState } from 'react';
 
 import ImageForm from '@/components/Admin/ImageForm';
@@ -15,16 +16,9 @@ enum Categories {
   roteador = 'Roteador',
 }
 
-export type CreatedProduct = {
-  _id: string;
-  name: string;
-  description: string;
-  price: 0;
-  images: [string];
-  amount: 0;
-  discount: 0;
-  category: [string];
-  createdAt: string;
+type ProductPostResponse = {
+  message: string;
+  newProduct: Product;
 };
 
 const Admin = () => {
@@ -33,9 +27,7 @@ const Admin = () => {
   const [category, setCategory] = useState<string[]>(['Selecione a categoria']);
   const [amount, setAmount] = useState('');
   const [description, setDescription] = useState('');
-  const [createdProduct, setCreatedProduct] = useState<CreatedProduct | null>(
-    null,
-  );
+  const [createdProduct, setCreatedProduct] = useState<Product | null>(null);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -49,20 +41,14 @@ const Admin = () => {
     setCreatedProduct(null);
   };
 
-  const fetchOptions = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      name,
-      price,
-      description,
-      amount,
-      category,
-      images: [],
-      discount: 0,
-    }),
+  const body = {
+    name,
+    price,
+    description,
+    amount,
+    category,
+    images: [],
+    discount: 0,
   };
 
   const validateInput = () => {
@@ -92,16 +78,15 @@ const Admin = () => {
 
     try {
       validateInput();
-      const response = await fetch(
+      const response = await axios.post<ProductPostResponse>(
         'https://e-commerce-backend-am7w.onrender.com/api/products/create/',
-        fetchOptions,
+        body,
       );
 
-      if (!response.ok) {
+      if (!response) {
         throw new Error('Houve um erro ao criar o produto.');
       }
-
-      const data = await response.json();
+      const { data } = response;
       setCreatedProduct(data.newProduct);
       resetForm();
     } catch (error) {
