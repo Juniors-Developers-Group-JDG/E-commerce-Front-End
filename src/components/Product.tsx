@@ -36,10 +36,10 @@ const Product = ({
         style={{ width: '15.125em', height: '15.125em' }}
       />
       <div className="flex flex-col bottom-0 max-w-[15em] relative flex-1">
-        <span className="py-0 px-[1em]">
+        <span className="py-0 px-[1em] min-h-[3em]">
           {title.length > 40 ? title.slice(0, 40) + '...' : title}
         </span>
-        <div className="relative h-full flex flex-col justify-end mb-[1em]">
+        <div className="relative h-fit flex flex-col justify-end mb-[1em]">
           {olderPrice && (
             <div className="relative">
               <p className="py-0 pl-[1.1em] text-[.875em]">R$ {olderPrice}</p>

@@ -106,19 +106,22 @@ const Header = () => {
             src={cartImage}
             width={30}
             alt="Imagem carrinho de compras"
+            style={{ width: 'auto', height: 'auto' }}
           />
         </Link>
         <Image
-          className="ml-[1.5em] transition-all cursor-pointer hover:scale-[1.1] max-lg:w-[35%] max-md:w-full"
+          className="lg:ml-[1.5em] transition-all cursor-pointer hover:scale-[1.1] max-lg:w-[35%] max-md:w-full"
           src={userImage}
           width={30}
           alt="Imagem usuário"
+          style={{ width: 'auto', height: 'auto' }}
         />
         <Image
           className="transition-all cursor-pointer hover:scale-[1.3] max-lg:w-[35%]"
           src={arrowImage}
           width={30}
           alt="Imagem seta para baixo"
+          style={{ width: 'auto', height: 'auto' }}
         />
       </div>
     </header>

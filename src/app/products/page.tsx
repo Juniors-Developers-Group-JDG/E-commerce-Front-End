@@ -2,13 +2,13 @@
 
 import { Inter } from 'next/font/google';
 import Image from 'next/image';
+import { useState } from 'react';
 
 import checkImage from '@/assets/images/check.svg';
 import productsStarBlueImage from '@/assets/images/productsStarBlue.svg';
 import productsStarGrayImage from '@/assets/images/productsStarGray.svg';
 import Footer, { designer_rafael } from '@/components/Layout/Footer';
-import Product from '@/components/Product';
-import useQueryGetProducts from '@/hooks/useQueryGetProducts';
+import SwiperProducts from '@/components/Products/SwiperProducts';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -16,7 +16,7 @@ const inter = Inter({
 });
 
 const Products = () => {
-  const { data, isFetching, isError } = useQueryGetProducts();
+  const [productsQuantity, setProductsQuantity] = useState<number | null>(null);
 
   const checkFilter = (e: React.MouseEvent) => {
     (
@@ -215,30 +215,35 @@ const Products = () => {
                     alt="star"
                     width={24}
                     height={24}
+                    style={{ width: 'auto', height: 'auto' }}
                   />
                   <Image
                     src={productsStarBlueImage}
                     alt="star"
                     width={24}
                     height={24}
+                    style={{ width: 'auto', height: 'auto' }}
                   />
                   <Image
                     src={productsStarBlueImage}
                     alt="star"
                     width={24}
                     height={24}
+                    style={{ width: 'auto', height: 'auto' }}
                   />
                   <Image
                     src={productsStarGrayImage}
                     alt="star"
                     width={24}
                     height={24}
+                    style={{ width: 'auto', height: 'auto' }}
                   />
                   <Image
                     src={productsStarGrayImage}
                     alt="star"
                     width={24}
                     height={24}
+                    style={{ width: 'auto', height: 'auto' }}
                   />
                 </div>
               </div>
@@ -246,7 +251,10 @@ const Products = () => {
           </section>
           <section>
             <div className="flex justify-between text-[1.5em] max-lg:flex-col">
-              <div>Exibindo: 1 - 12 de 100 resultados</div>
+              <div>
+                Exibindo: 1 - 12 de{' '}
+                {productsQuantity !== null ? productsQuantity : '20'} resultados
+              </div>
               <div className="flex gap-[1em] max-md:flex-col max-md:gap-0">
                 <span>Ordernar por:</span>
                 <select
@@ -263,27 +271,7 @@ const Products = () => {
           </section>
         </section>
         <div className="flex w-[85%] justify-evenly mt-[2em] mx-auto gap-[1em] flex-wrap">
-          {isFetching && !data && (
-            <div className="w-[5em] h-[5em] border-solid border-[.65em] border-[#f1f1f1] border-t-[#000033] rounded-full animate-spin"></div>
-          )}
-          {data
-            ?.slice(0, 12)
-            .map(prod => (
-              <Product
-                key={prod._id}
-                title={prod.name}
-                price={prod.price?.toString()}
-                image={prod.images[0]}
-                discount=""
-                division=""
-                olderPrice=""
-              />
-            ))}
-          {isError && (
-            <p className="text-[1.2em] font-bold text-center">
-              Algo deu errado, tente recarregar a página.
-            </p>
-          )}
+          <SwiperProducts productsQuantityFn={setProductsQuantity} />
         </div>
       </main>
       <Footer name={designer_rafael.name} link={designer_rafael.link} />

@@ -54,3 +54,18 @@ input[type="range"]::-webkit-slider-thumb {
   color: #000033;
   scale: .75;
 }
+
+.swiper-wrapper {
+  max-height: 95em;
+  flex-wrap: wrap;
+}
+
+span.swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background-color: #000033;
+  opacity: 1;
+}
+
+.swiper-pagination {
+  position: absolute !important;
+  bottom: 0 !important;
+}

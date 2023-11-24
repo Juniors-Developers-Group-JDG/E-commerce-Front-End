@@ -1,0 +1,100 @@
+'use client';
+
+import React, { Dispatch, SetStateAction, useEffect } from 'react';
+import { Pagination, Grid } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/grid';
+
+import useQueryGetProducts from '@/hooks/useQueryGetProducts';
+
+import Product from '../Product';
+
+interface Props {
+  productsQuantityFn: Dispatch<SetStateAction<number | null>>;
+}
+
+const SwiperProducts = ({ productsQuantityFn }: Props) => {
+  const { data, isFetching, isError } = useQueryGetProducts();
+
+  useEffect(() => {
+    if (data) {
+      productsQuantityFn(data.length);
+    }
+  }, [data, productsQuantityFn]);
+
+  return (
+    <>
+      {isFetching && !data && (
+        <div className="w-[5em] h-[5em] border-solid border-[.65em] border-[#f1f1f1] border-t-[#000033] rounded-full animate-spin"></div>
+      )}
+      {data && (
+        <Swiper
+          navigation={true}
+          modules={[Pagination, Grid]}
+          className="mySwiper"
+          slidesPerView={1}
+          slidesPerGroup={1}
+          grid={{ rows: 3, fill: 'row' }}
+          pagination={{
+            clickable: true,
+            dynamicBullets: true,
+          }}
+          breakpoints={{
+            768: {
+              slidesPerView: 2,
+              slidesPerGroup: 2,
+            },
+            1024: {
+              slidesPerView: 3,
+              slidesPerGroup: 3,
+            },
+            1440: {
+              slidesPerView: 4,
+              slidesPerGroup: 4,
+            },
+            1920: {
+              slidesPerView: 6,
+              slidesPerGroup: 6,
+            },
+            2040: {
+              slidesPerView: 7,
+              slidesPerGroup: 7,
+            },
+          }}
+        >
+          {data?.map((prod, index) => (
+            <React.Fragment key={index}>
+              <SwiperSlide
+                key={prod._id}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-evenly',
+                  padding: '1em 0',
+                }}
+              >
+                <Product
+                  title={prod.name}
+                  price={prod.price?.toString()}
+                  image={prod.images[0]}
+                  discount=""
+                  division=""
+                  olderPrice=""
+                />
+              </SwiperSlide>
+            </React.Fragment>
+          ))}
+        </Swiper>
+      )}
+      {isError && (
+        <p className="text-[1.2em] font-bold text-center">
+          Algo deu errado, tente recarregar a página.
+        </p>
+      )}
+    </>
+  );
+};
+
+export default SwiperProducts;
