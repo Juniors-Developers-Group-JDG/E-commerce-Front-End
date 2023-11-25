@@ -1,4 +1,5 @@
 import Image, { StaticImageData } from 'next/image';
+import Link from 'next/link';
 
 import cartImage from '@/assets/images/cart.svg';
 import plusImage from '@/assets/images/plus.svg';
@@ -10,6 +11,7 @@ interface Props {
   olderPrice?: string;
   discount?: string;
   division?: string;
+  link: string;
 }
 
 const Product = ({
@@ -19,9 +21,13 @@ const Product = ({
   discount,
   olderPrice,
   division,
+  link,
 }: Props) => {
   return (
-    <div className="bg-white border-[.063em] border-solid border-[#879DB7] rounded-[.625em] flex flex-col relative transition-all cursor-pointer hover:shadow-product-miniature w-fit mx-[1em] max-w-[75%] h-fit">
+    <Link
+      href={link}
+      className="bg-white border-[.063em] border-solid border-[#879DB7] rounded-[.625em] flex flex-col relative transition-all cursor-pointer hover:shadow-product-miniature w-fit mx-[1em] max-w-[75%] h-fit"
+    >
       {discount != '0' && discount && (
         <div className="bg-[#000033] text-white w-1/4 absolute right-0 top-[5%] text-center">
           <span>-{discount}%</span>
@@ -75,7 +81,7 @@ const Product = ({
         src={plusImage}
         alt="Imagem sinal de mais"
       />
-    </div>
+    </Link>
   );
 };
 

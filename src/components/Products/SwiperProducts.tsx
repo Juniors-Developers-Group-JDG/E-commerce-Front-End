@@ -125,6 +125,7 @@ const SwiperProducts = ({
                       discount={prod.discount.toString()}
                       division=""
                       olderPrice={prod.price?.toString()}
+                      link={`/product/${index + 1}`}
                     />
                   ) : (
                     prod.discount === productsDiscount && (
@@ -135,6 +136,7 @@ const SwiperProducts = ({
                         discount={prod.discount.toString()}
                         division=""
                         olderPrice={prod.price?.toString()}
+                        link={`/product/${index + 1}`}
                       />
                     )
                   )}
@@ -195,6 +197,7 @@ const SwiperProducts = ({
                       discount={prod.discount.toString()}
                       division=""
                       olderPrice={prod.price?.toString()}
+                      link={`/product/${index + 1}`}
                     />
                   </SwiperSlide>
                 )}

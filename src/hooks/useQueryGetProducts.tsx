@@ -12,6 +12,7 @@ const useQueryGetProducts = () => {
       const { data } = await axios.get(URL);
       return data;
     },
+    refetchOnWindowFocus: false,
   });
   return { data, isFetching, isError };
 };
