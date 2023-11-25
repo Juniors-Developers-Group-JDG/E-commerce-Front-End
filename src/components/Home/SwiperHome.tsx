@@ -52,13 +52,12 @@ const SwiperHome = () => {
                 }}
               >
                 <Product
-                  key={prod._id}
                   title={prod.name}
                   price={prod.price?.toString()}
                   image={prod.images[0]}
-                  discount=""
+                  discount={prod.discount.toString()}
                   division=""
-                  olderPrice=""
+                  olderPrice={prod.price?.toString()}
                 />
               </SwiperSlide>
             </React.Fragment>

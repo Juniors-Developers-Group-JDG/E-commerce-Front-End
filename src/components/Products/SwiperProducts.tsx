@@ -13,81 +13,195 @@ import useQueryGetProducts from '@/hooks/useQueryGetProducts';
 import Product from '../Product';
 
 interface Props {
-  productsQuantityFn: Dispatch<SetStateAction<number | null>>;
+  productsFetchQuantityFn: Dispatch<SetStateAction<number>>;
+  higherProductPriceFn: Dispatch<SetStateAction<number>>;
+  lowestProductPriceFn: Dispatch<SetStateAction<number>>;
+  productsDiscount: number;
+  higherProductPrice: number;
+  lowestProductPrice: number;
 }
 
-const SwiperProducts = ({ productsQuantityFn }: Props) => {
+const SwiperProducts = ({
+  productsFetchQuantityFn,
+  productsDiscount,
+  higherProductPriceFn,
+  higherProductPrice,
+  lowestProductPriceFn,
+  lowestProductPrice,
+}: Props) => {
   const { data, isFetching, isError } = useQueryGetProducts();
 
   useEffect(() => {
     if (data) {
-      productsQuantityFn(data.length);
+      data.map(prod => {
+        if (prod.price > higherProductPrice) {
+          higherProductPriceFn(prod.price);
+        }
+        if (prod.price < lowestProductPrice) {
+          lowestProductPriceFn(prod.price);
+        }
+      });
+      if (productsDiscount !== 0) {
+        const productsOnScreen = [];
+        data.map(prod => {
+          if (prod.discount == productsDiscount) {
+            productsOnScreen.push(1);
+          }
+          if (prod.price > higherProductPrice) {
+            higherProductPriceFn(prod.price);
+          }
+        });
+        productsFetchQuantityFn(productsOnScreen.length);
+      } else {
+        productsFetchQuantityFn(data.length);
+      }
     }
-  }, [data, productsQuantityFn]);
+  }, [
+    data,
+    productsFetchQuantityFn,
+    productsDiscount,
+    higherProductPrice,
+    higherProductPriceFn,
+    lowestProductPrice,
+    lowestProductPriceFn,
+  ]);
 
   return (
     <>
       {isFetching && !data && (
         <div className="w-[5em] h-[5em] border-solid border-[.65em] border-[#f1f1f1] border-t-[#000033] rounded-full animate-spin"></div>
       )}
-      {data && (
-        <Swiper
-          navigation={true}
-          modules={[Pagination, Grid]}
-          className="mySwiper"
-          slidesPerView={1}
-          slidesPerGroup={1}
-          grid={{ rows: 3, fill: 'row' }}
-          pagination={{
-            clickable: true,
-            dynamicBullets: true,
-          }}
-          breakpoints={{
-            768: {
-              slidesPerView: 2,
-              slidesPerGroup: 2,
-            },
-            1024: {
-              slidesPerView: 3,
-              slidesPerGroup: 3,
-            },
-            1440: {
-              slidesPerView: 4,
-              slidesPerGroup: 4,
-            },
-            1920: {
-              slidesPerView: 6,
-              slidesPerGroup: 6,
-            },
-            2040: {
-              slidesPerView: 7,
-              slidesPerGroup: 7,
-            },
-          }}
-        >
-          {data?.map((prod, index) => (
-            <React.Fragment key={index}>
-              <SwiperSlide
-                key={prod._id}
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-evenly',
-                  padding: '1em 0',
-                }}
-              >
-                <Product
-                  title={prod.name}
-                  price={prod.price?.toString()}
-                  image={prod.images[0]}
-                  discount=""
-                  division=""
-                  olderPrice=""
-                />
-              </SwiperSlide>
-            </React.Fragment>
-          ))}
-        </Swiper>
-      )}
+      {data &&
+        (productsDiscount == 0 ? (
+          <Swiper
+            navigation={true}
+            modules={[Pagination, Grid]}
+            className="mySwiper"
+            slidesPerView={1}
+            slidesPerGroup={1}
+            grid={{ rows: 3, fill: 'row' }}
+            pagination={{
+              clickable: true,
+              dynamicBullets: true,
+            }}
+            breakpoints={{
+              768: {
+                slidesPerView: 2,
+                slidesPerGroup: 2,
+              },
+              1024: {
+                slidesPerView: 3,
+                slidesPerGroup: 3,
+              },
+              1440: {
+                slidesPerView: 4,
+                slidesPerGroup: 4,
+              },
+              1920: {
+                slidesPerView: 6,
+                slidesPerGroup: 6,
+              },
+              2040: {
+                slidesPerView: 7,
+                slidesPerGroup: 7,
+              },
+            }}
+          >
+            {data?.map((prod, index) => (
+              <React.Fragment key={index}>
+                <SwiperSlide
+                  key={prod._id}
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-evenly',
+                    padding: '1em 0',
+                  }}
+                >
+                  {productsDiscount == 0 ? (
+                    <Product
+                      title={prod.name}
+                      price={prod.price?.toString()}
+                      image={prod.images[0]}
+                      discount={prod.discount.toString()}
+                      division=""
+                      olderPrice={prod.price?.toString()}
+                    />
+                  ) : (
+                    prod.discount === productsDiscount && (
+                      <Product
+                        title={prod.name}
+                        price={prod.price?.toString()}
+                        image={prod.images[0]}
+                        discount={prod.discount.toString()}
+                        division=""
+                        olderPrice={prod.price?.toString()}
+                      />
+                    )
+                  )}
+                </SwiperSlide>
+              </React.Fragment>
+            ))}
+          </Swiper>
+        ) : (
+          <Swiper
+            navigation={true}
+            modules={[Pagination, Grid]}
+            className="mySwiper"
+            slidesPerView={1}
+            slidesPerGroup={1}
+            grid={{ rows: 3, fill: 'row' }}
+            pagination={{
+              clickable: true,
+              dynamicBullets: true,
+            }}
+            breakpoints={{
+              768: {
+                slidesPerView: 2,
+                slidesPerGroup: 2,
+              },
+              1024: {
+                slidesPerView: 3,
+                slidesPerGroup: 3,
+              },
+              1440: {
+                slidesPerView: 4,
+                slidesPerGroup: 4,
+              },
+              1920: {
+                slidesPerView: 6,
+                slidesPerGroup: 6,
+              },
+              2040: {
+                slidesPerView: 7,
+                slidesPerGroup: 7,
+              },
+            }}
+          >
+            {data?.map((prod, index) => (
+              <React.Fragment key={index}>
+                {prod.discount != 0 && prod.discount == productsDiscount && (
+                  <SwiperSlide
+                    key={prod._id}
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-evenly',
+                      padding: '1em 0',
+                    }}
+                  >
+                    <Product
+                      title={prod.name}
+                      price={prod.price?.toString()}
+                      image={prod.images[0]}
+                      discount={prod.discount.toString()}
+                      division=""
+                      olderPrice={prod.price?.toString()}
+                    />
+                  </SwiperSlide>
+                )}
+              </React.Fragment>
+            ))}
+          </Swiper>
+        ))}
       {isError && (
         <p className="text-[1.2em] font-bold text-center">
           Algo deu errado, tente recarregar a página.
