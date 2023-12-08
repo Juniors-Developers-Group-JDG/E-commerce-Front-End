@@ -48,12 +48,11 @@ const Product = () => {
   const id = params.id as string;
 
   const { productData, isFetching, isError, redirect } = ProductPageData(id);
-  // implement logic later
-  const [imgSelected, setImgSelected] = useState(1);
+  const [imgSelectedIndex, setImgSelectedIndex] = useState(0);
 
   const selectImg = (e: React.MouseEvent<HTMLDivElement>) => {
-    const imageId = Number(e.currentTarget.getAttribute('img-id'));
-    imageId === 1 ? setImgSelected(1) : setImgSelected(2);
+    const imageIdIndex = Number(e.currentTarget.getAttribute('img-id'));
+    setImgSelectedIndex(imageIdIndex);
   };
 
   if (redirect === true) {
@@ -76,14 +75,14 @@ const Product = () => {
                     key={index}
                     onClick={selectImg}
                     className={`w-[7.813em] h-[7.813em] bg-[#CFCFCF] rounded-md border-2 flex-col justify-start items-start flex cursor-pointer transition-all ${
-                      imgSelected === 1
+                      imgSelectedIndex === index
                         ? 'border-[#3282B8] shadow-product-miniature cursor-auto'
                         : ''
-                    }`}
-                    img-id={index - 1}
+                    } max-md:w-[4.5em] max-md:h-[4.5em]`}
+                    img-id={index}
                   >
                     <Image
-                      className="self-stretch grow shrink basis-0 w-full h-full object-contain rounded-md"
+                      className="max-md:w-[4.5em] max-md:h-[4em] bg-white self-stretch grow shrink basis-0 w-full h-full object-contain rounded-md"
                       src={prod.images[index]}
                       alt={prod.name + index}
                       width={384}
@@ -98,13 +97,13 @@ const Product = () => {
                     key={index}
                     onClick={selectImg}
                     className={`w-[7.813em] h-[7.813em] bg-[#CFCFCF] rounded-md border-2 flex-col justify-start items-start flex cursor-pointer transition-all ${
-                      imgSelected === 1
+                      imgSelectedIndex === index
                         ? 'border-[#3282B8] shadow-product-miniature cursor-auto'
                         : ''
-                    }`}
+                    } max-md:w-[4.5em] max-md:h-[4.5em]`}
                   >
                     <Image
-                      className="self-stretch grow shrink basis-0 w-full h-full object-contain rounded-md"
+                      className="max-md:w-[4.5em] max-md:h-[4em] self-stretch grow shrink basis-0 w-full h-full object-contain rounded-md"
                       src={defaultImage}
                       alt="default"
                       width={384}
@@ -117,13 +116,14 @@ const Product = () => {
             <div className="w-[-webkit-fill-available] h-fit my-[3em] mx-auto p-8 flex-col justify-center items-center inline-flex max-lg:w-auto max-lg:p-0">
               {productData[0] && (
                 <Image
-                  className="self-stretch grow shrink basis-0"
-                  src={productData[0].images[0]}
+                  className="mix-blend-multiply self-stretch grow shrink basis-0"
+                  src={productData[0].images[imgSelectedIndex]}
                   alt={productData[0].name}
                   width={384}
                   height={384}
                   style={{
                     maxHeight: '24em',
+                    objectFit: 'contain',
                   }}
                 />
               )}
@@ -166,7 +166,7 @@ const Product = () => {
                 </div>
               </div>
             </div>
-            <div className="w-96 h-24 justify-start items-end gap-4 inline-flex max-xl:flex-col max-xl:gap-0 max-xl:h-auto max-xl:items-baseline">
+            <div className="w-fit h-24 justify-start items-end gap-4 inline-flex max-xl:flex-col max-xl:gap-0 max-xl:h-auto max-xl:items-baseline">
               <div className="flex-col justify-start items-start gap-2 inline-flex">
                 {/* // if product has discount, add later */}
                 {/* <div className="justify-start items-start gap-2 inline-flex relative">
