@@ -1,9 +1,13 @@
+'use client';
+
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
+
 const Promotions = () => {
-  return (
-    <main>
-      <h1>Promotions</h1>
-    </main>
-  );
+  const router = useRouter();
+  useEffect(() => {
+    router.push('/products?discount=20');
+  }, [router]);
 };
 
 export default Promotions;
