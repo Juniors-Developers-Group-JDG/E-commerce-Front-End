@@ -1,5 +1,5 @@
-import xboxImage from '@/assets/images/xbox.svg';
 import ps5Image from '@/assets/images/ps5.svg';
+import xboxImage from '@/assets/images/xbox.svg';
 
 import CartSuggestionsProduct, {
   CartSuggestionsProductItem,
@@ -33,8 +33,9 @@ const CartSuggestions = ({
       <h2 className="text-center text-[1.5em] mb-2">
         Esqueceu <span className="underline underline-offset-8">Isso</span>?
       </h2>
-      {suggestions.map(suggestionItem => (
+      {suggestions.map((suggestionItem, index) => (
         <CartSuggestionsProduct
+          key={index}
           name={suggestionItem.name}
           price={suggestionItem.price}
           imageUrl={suggestionItem.imageUrl}

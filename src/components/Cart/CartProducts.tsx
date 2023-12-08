@@ -1,7 +1,7 @@
-import CartProduct, { CartProductItem } from './CartProduct';
-
-import xboxImage from '@/assets/images/xbox.svg';
 import ps5Image from '@/assets/images/ps5.svg';
+import xboxImage from '@/assets/images/xbox.svg';
+
+import CartProduct, { CartProductItem } from './CartProduct';
 
 interface CartProductsProps {
   products?: CartProductItem[];
@@ -31,8 +31,9 @@ const CartProducts = ({ products = mockProducts }: CartProductsProps) => {
 
   return (
     <div className="flex flex-col flex-1 bg-[#ededed] py-3 px-7 max-md:px-3 col-span-2 max-lg:col-span-3 rounded-xl shadow-[0px_0px_10px_3px_#2626261A]">
-      {products.map(product => (
+      {products.map((product, index) => (
         <CartProduct
+          key={index}
           name={product.name}
           price={product.price}
           imageUrl={product.imageUrl}

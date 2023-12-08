@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 import Footer, { designer_thaissa } from '@/components/Layout/Footer';
 
@@ -65,11 +65,13 @@ const Login = () => {
             </span>
             <form className="flex flex-col mb-[1em]" onSubmit={handleLogin}>
               <input
+                name="email"
                 className="w-[21.875em] h-[3.669em] bg-[#000000] text-[#ffffff] rounded-[.25em] mt-[1.313em] mb-[1.875em] p-[1em] outline-none hover:ring hover:ring-[#3282B8] focus:ring focus:ring-[#BBE1FA]"
                 type="text"
                 placeholder="Login"
               />
               <input
+                name="password"
                 className="w-[21.875em] h-[3.669em] bg-[#000000] text-[#ffffff] rounded-[.25em] p-[1em] outline-none hover:ring hover:ring-[#3282B8] focus:ring focus:ring-[#BBE1FA]"
                 type="text"
                 placeholder="Senha"

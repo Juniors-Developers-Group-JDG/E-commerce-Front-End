@@ -27,7 +27,7 @@ export const designer_mylena: designerType = {
 
 export const designer_thaissa: designerType = {
   name: 'Thaissa Carvalho',
-  link: 'https://www.linkedin.com/in/thaissa-carvalho-dos-santos/',
+  link: 'https://thaissacarvalho.vercel.app/',
 };
 
 export const designer_juan: designerType = {

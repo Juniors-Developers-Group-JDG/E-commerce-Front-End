@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+
 import RegisterInput from './RegisterInput';
 
 const RegisterForm = () => {
@@ -10,7 +11,7 @@ const RegisterForm = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [emailError, setEmailError] = useState('');
-  const [existingEmails, setExistingEmails] = useState([]);
+  // const [existingEmails, setExistingEmails] = useState([]);
 
   const handleRegister = async () => {
     try {
@@ -24,12 +25,13 @@ const RegisterForm = () => {
         return;
       }
 
-      if (existingEmails.some(existingEmail => existingEmail === email)) {
-        setEmailError('Este endereço de e-mail já está em uso.');
-        return;
-      }
+      // if (existingEmails.some(existingEmail => existingEmail === email)) {
+      //   setEmailError('Este endereço de e-mail já está em uso.');
+      //   return;
+      // }
 
-      const urlRegister = 'https://e-commerce-backend-am7w.onrender.com/api/users/register/';
+      const urlRegister =
+        'https://e-commerce-backend-am7w.onrender.com/api/users/register/';
 
       const response = await fetch(urlRegister, {
         method: 'POST',
@@ -40,7 +42,7 @@ const RegisterForm = () => {
           name,
           email,
           password,
-          confirmPassword: confirmPassword,
+          confirmPassword,
         }),
       });
 
