@@ -21,6 +21,7 @@ const Products = () => {
   const [productsDiscount, setProductsDiscount] = useState<number>(0);
   const [higherProductPrice, setHigherProductPrice] = useState<number>(0);
   const [lowestProductPrice, setLowestProductPrice] = useState<number>(1000);
+  const [priceFiltered, setPriceFiltered] = useState<number>(0);
   const router = useRouter();
 
   useEffect(() => {
@@ -58,6 +59,9 @@ const Products = () => {
 
   const checkFilter = (e: React.MouseEvent) => {
     const currentTarget = e.currentTarget as HTMLDivElement;
+    if (priceFiltered !== 0) {
+      setPriceFiltered(0);
+    }
     const discountsArea = document.getElementById(
       'discounts-area',
     ) as HTMLDivElement;
@@ -135,6 +139,12 @@ const Products = () => {
         ).style.opacity = '0';
       }
     }
+  };
+
+  const checkPrice = (e: React.MouseEvent<HTMLInputElement>) => {
+    const currentTarget = e.currentTarget as HTMLInputElement;
+    if (productsDiscount !== 0) return;
+    setPriceFiltered(Number(currentTarget.value));
   };
 
   return (
@@ -219,15 +229,22 @@ const Products = () => {
                 </div>
               </div> */}
 
-              {/* <div>
-                <span className="text-[1.25em]">preço:</span>
-                <div className="flex flex-col items-baseline w-fit">
+              <div className="flex flex-col gap-[1em]">
+                <div className="flex items-center text-[1.25em] gap-[1em]">
+                  <span>preço:</span>
+                  <div>{priceFiltered > 0 && `R$ ${priceFiltered}`}</div>
+                </div>
+                <div className="flex flex-col items-baseline w-fit relative gap-[1em]">
                   <input
+                    // onMouseUp={checkPrice}
+                    onMouseUpCapture={checkPrice}
                     className="w-[9em] mb-[.5em] flex self-center"
                     type="range"
-                    min={100}
-                    max={450}
+                    min={lowestProductPrice}
+                    max={higherProductPrice}
                   />
+                  <div className="bg-[#000033] w-[1.5em] h-[1.5em] absolute right-[1.2em] bottom-[3.8em] rounded-[1em]"></div>
+                  <div className="bg-[#000033] w-[1.5em] h-[1.5em] absolute left-[1.2em] bottom-[3.8em] rounded-[1em]"></div>
                   <div className="flex justify-between text-center gap-[3em]">
                     <div>
                       <div className="bg-[#879DB796] w-[5.625em] h-[1.5em] rounded-[.188em]">
@@ -247,7 +264,7 @@ const Products = () => {
                     </div>
                   </div>
                 </div>
-              </div> */}
+              </div>
 
               <div>
                 <span className="text-[1.25em]">promoção:</span>
@@ -391,6 +408,7 @@ const Products = () => {
             higherProductPrice={higherProductPrice}
             lowestProductPriceFn={setLowestProductPrice}
             lowestProductPrice={lowestProductPrice}
+            priceFiltered={priceFiltered}
           />
         </div>
       </main>

@@ -19,6 +19,7 @@ interface Props {
   productsDiscount: number;
   higherProductPrice: number;
   lowestProductPrice: number;
+  priceFiltered: number;
 }
 
 const SwiperProducts = ({
@@ -28,10 +29,12 @@ const SwiperProducts = ({
   higherProductPrice,
   lowestProductPriceFn,
   lowestProductPrice,
+  priceFiltered,
 }: Props) => {
   const { data, isFetching, isError } = useQueryGetProducts();
 
   useEffect(() => {
+    const productsOnScreen = [];
     if (data) {
       data.map(prod => {
         if (prod.price > higherProductPrice) {
@@ -40,21 +43,23 @@ const SwiperProducts = ({
         if (prod.price < lowestProductPrice) {
           lowestProductPriceFn(prod.price);
         }
-      });
-      if (productsDiscount !== 0) {
-        const productsOnScreen = [];
-        data.map(prod => {
+        if (productsDiscount !== 0) {
           if (prod.discount == productsDiscount) {
             productsOnScreen.push(1);
           }
           if (prod.price > higherProductPrice) {
             higherProductPriceFn(prod.price);
           }
-        });
-        productsFetchQuantityFn(productsOnScreen.length);
-      } else {
-        productsFetchQuantityFn(data.length);
-      }
+          productsFetchQuantityFn(productsOnScreen.length);
+        } else if (priceFiltered !== 0) {
+          if (prod.price <= priceFiltered) {
+            productsOnScreen.push(1);
+          }
+          productsFetchQuantityFn(productsOnScreen.length);
+        } else {
+          productsFetchQuantityFn(data.length);
+        }
+      });
     }
   }, [
     data,
@@ -64,6 +69,7 @@ const SwiperProducts = ({
     higherProductPriceFn,
     lowestProductPrice,
     lowestProductPriceFn,
+    priceFiltered,
   ]);
 
   return (
@@ -72,7 +78,7 @@ const SwiperProducts = ({
         <div className="w-[5em] h-[5em] border-solid border-[.65em] border-[#f1f1f1] border-t-[#000033] rounded-full animate-spin"></div>
       )}
       {data &&
-        (productsDiscount == 0 ? (
+        (productsDiscount == 0 && priceFiltered == 0 ? (
           <Swiper
             navigation={true}
             modules={[Pagination, Grid]}
@@ -117,29 +123,15 @@ const SwiperProducts = ({
                     padding: '1em 0',
                   }}
                 >
-                  {productsDiscount == 0 ? (
-                    <Product
-                      title={prod.name}
-                      price={prod.price?.toString()}
-                      image={prod.images[0]}
-                      discount={prod.discount.toString()}
-                      division=""
-                      olderPrice={prod.price?.toString()}
-                      link={`/product/${index + 1}`}
-                    />
-                  ) : (
-                    prod.discount === productsDiscount && (
-                      <Product
-                        title={prod.name}
-                        price={prod.price?.toString()}
-                        image={prod.images[0]}
-                        discount={prod.discount.toString()}
-                        division=""
-                        olderPrice={prod.price?.toString()}
-                        link={`/product/${index + 1}`}
-                      />
-                    )
-                  )}
+                  <Product
+                    title={prod.name}
+                    price={prod.price?.toString()}
+                    image={prod.images[0]}
+                    discount={prod.discount.toString()}
+                    division=""
+                    olderPrice={prod.price?.toString()}
+                    link={`/product/${index + 1}`}
+                  />
                 </SwiperSlide>
               </React.Fragment>
             ))}
@@ -193,6 +185,26 @@ const SwiperProducts = ({
                     <Product
                       title={prod.name}
                       price={prod.price?.toString()}
+                      image={prod.images[0]}
+                      discount={prod.discount.toString()}
+                      division=""
+                      olderPrice={prod.price?.toString()}
+                      link={`/product/${index + 1}`}
+                    />
+                  </SwiperSlide>
+                )}
+                {priceFiltered != 0 && prod.price <= priceFiltered && (
+                  <SwiperSlide
+                    key={prod._id}
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-evenly',
+                      padding: '1em 0',
+                    }}
+                  >
+                    <Product
+                      title={prod.name}
+                      price={prod.price.toString()}
                       image={prod.images[0]}
                       discount={prod.discount.toString()}
                       division=""
