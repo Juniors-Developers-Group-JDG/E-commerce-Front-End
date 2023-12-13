@@ -3,12 +3,12 @@
 import Link from 'next/link';
 
 import Footer, { designer_thaissa } from '@/components/Layout/Footer';
-import RegisterForm from '@/components/Register/RegisterForm';
+import RegisterForm from '@/components/Register/page/RegisterForm';
 
 const Register = () => {
   return (
     <>
-      <section className="bg-[#000033] flex-1 flex max-md:flex-col-reverse justify-evenly max-md:items-center max-md:justify-normal py-32 max-md:py-20 mt-4">
+      <section className="bg-[#000033] flex-1 flex max-md:flex-col-reverse justify-evenly max-md:items-center max-md:justify-normal py-32 max-md:py-20 mt-4 max-md:mt-[6em]">
         <RegisterForm />
         <div className="max-md:mb-16">
           <h1 className="text-[2.25em] max-md:text-[1.5em] text-[#ffffff] uppercase">

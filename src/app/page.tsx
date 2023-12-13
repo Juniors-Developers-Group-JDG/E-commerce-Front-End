@@ -1,9 +1,9 @@
 'use client';
 
-import AppStore from '@/components/Home/AppStore';
-import Banner from '@/components/Home/Banner';
-import Best_Sellers from '@/components/Home/Best_Sellers';
-import Categories from '@/components/Home/Categories';
+import AppStore from '@/components/Home/page/AppStore';
+import Banner from '@/components/Home/page/Banner';
+import Best_Sellers from '@/components/Home/page/Best_Sellers';
+import Categories from '@/components/Home/page/Categories';
 import Footer, { designer_mylena } from '@/components/Layout/Footer';
 
 const Home = () => {

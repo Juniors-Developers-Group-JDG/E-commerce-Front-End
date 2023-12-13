@@ -1,11 +1,11 @@
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 
-import cartImage from '@/assets/images/cart.svg';
+import cartImage from '@/assets/images/layout/cart.svg';
 
 export interface CartSuggestionsProductItem {
   name: string;
   price: number;
-  imageUrl: string;
+  imageUrl: StaticImageData;
   discount?: number;
 }
 

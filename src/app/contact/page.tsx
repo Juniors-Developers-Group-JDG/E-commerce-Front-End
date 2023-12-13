@@ -2,15 +2,15 @@
 
 import Image from 'next/image';
 
-import GoogleBlueButton from '@/assets/images/google-blue-button.svg';
-import LinkedinBluebutton from '@/assets/images/linkedin-blue-button.svg';
-import TwitterBluebutton from '@/assets/images/twitter-blue-button.svg';
+import GoogleBlueButton from '@/assets/images/contact-page/google-blue-button.svg';
+import LinkedinBluebutton from '@/assets/images/contact-page/linkedin-blue-button.svg';
+import TwitterBluebutton from '@/assets/images/contact-page/twitter-blue-button.svg';
 import Footer, { designer_thaissa } from '@/components/Layout/Footer';
 
 const Contact = () => {
   return (
     <>
-      <main className="flex-1">
+      <main className="flex-1 max-md:mt-[6em]">
         <div className="py-10">
           <h1 className="text-black text-5xl font-medium text-center">
             Contato

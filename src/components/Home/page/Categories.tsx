@@ -1,12 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import expandLeft from '@/assets/images/expand-left.svg';
-import expandRight from '@/assets/images/expand-right.svg';
-import CategoriesExpandButton from '@/components/UI/CategoriesExpandButton';
+import expandLeft from '@/assets/images/home-page/expand-left.svg';
+import expandRight from '@/assets/images/home-page/expand-right.svg';
+import CategoriesExpandButton from '@/components/Home/CategoriesExpandButton';
 
 import CategoryCard from '../CategoryCard';
-import SwiperHome from './SwiperHome';
+import SwiperHome from '../SwiperHome';
 
 interface Category {
   label: string;
@@ -63,7 +63,7 @@ const Categories = ({ categories = mockCategoriesData }: CategoriesProps) => {
               </CategoriesExpandButton>
             </div>
           </div>
-          <div className="flex gap-10 justify-center mt-10 mb-20 max-lg:gap-[1em] max-md:mt-[6em]">
+          <div className="flex gap-10 justify-center mt-10 mb-20 max-lg:gap-[1em] max-md:mt-[6em] max-md:flex-col max-md:items-center">
             {categories.map((category, index) => (
               <CategoryCard label={category.label} key={index} />
             ))}

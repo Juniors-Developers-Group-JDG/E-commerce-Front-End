@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import starGrayIcon from '@/assets/images/starGray.svg';
+import starGrayIcon from '@/assets/images/product-page/starGray.svg';
 
 import ProgressBar from './ProgressBar';
 import StarRating from './StarRating';

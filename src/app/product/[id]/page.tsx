@@ -5,9 +5,9 @@ import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 import defaultImage from '@/assets/images/default.png';
-import star from '@/assets/images/star.svg';
+import star from '@/assets/images/product-page/star.svg';
 import Footer, { designer_juan } from '@/components/Layout/Footer';
-import { ProductPageData } from '@/components/Product/ProductPageData';
+import { ProductPageData } from '@/components/Product/page/ProductPageData';
 import SwiperProduct from '@/components/Product/SwiperProduct';
 // import Comments_Products from '@/components/Product/Comments_Product';
 // import Rating_Product from '@/components/Product/Rating_Product';
@@ -65,7 +65,7 @@ const Product = () => {
 
   return (
     <>
-      <main className="flex-1 max-w-[80%] max-sm:max-w-[100%] mx-auto bg-[#EDEDED] my-5 p-8 rounded-lg shadow-product-container">
+      <main className="flex-1 max-w-[80%] max-sm:max-w-[100%] mx-auto bg-[#EDEDED] my-5 p-8 rounded-lg shadow-product-container max-md:mt-[6em]">
         <section className="w-full justify-evenly items-start inline-flex flex-row max-lg:flex-col">
           <div className="justify-center flex flex-row items-start w-full max-lg:items-center max-lg:flex-col">
             <div className="flex-col justify-start items-start gap-4 inline-flex max-lg:flex-row">

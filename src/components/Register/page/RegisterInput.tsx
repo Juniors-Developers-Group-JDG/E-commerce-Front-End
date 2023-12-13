@@ -1,10 +1,10 @@
 'use client';
 
-import { useState } from 'react';
 import Image from 'next/image';
+import { useState } from 'react';
 
-import showPassword from '@/assets/images/show-password.svg';
-import hidePassword from '@/assets/images/hide-password.svg';
+import hidePassword from '@/assets/images/register-page/hide-password.svg';
+import showPassword from '@/assets/images/register-page/show-password.svg';
 
 type RegisterInputProps = React.ComponentProps<'input'> & {
   label: string;

@@ -74,3 +74,29 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active {
 .mySwiper {
   height: fit-content;
 }
+
+.display-flex {
+  display: flex;
+}
+
+.display-none {
+  display: none;
+}
+
+@media screen and (min-width: 48em) {
+  #sidebar {
+    display: none;
+  }
+}
+
+.styled-menu:nth-child(1) {
+  transform: translate(0, 1em) rotate(-45deg);
+}
+
+.styled-menu:nth-child(2) {
+  opacity: 0;
+}
+
+.styled-menu:nth-child(3) {
+  transform: translate(0, -1em) rotate(45deg);
+}

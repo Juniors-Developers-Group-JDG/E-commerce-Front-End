@@ -5,10 +5,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 
-import facebookImage from '@/assets/images/facebook.svg';
-import instagramImage from '@/assets/images/instagram.svg';
-import linkedinImage from '@/assets/images/linkedin.svg';
-import whatsappImage from '@/assets/images/whatsapp.svg';
+import facebookImage from '@/assets/images/footer/facebook.svg';
+import instagramImage from '@/assets/images/footer/instagram.svg';
+import linkedinImage from '@/assets/images/footer/linkedin.svg';
+import whatsappImage from '@/assets/images/footer/whatsapp.svg';
 
 const krona_one = Krona_One({
   subsets: ['latin'],
@@ -138,7 +138,7 @@ const Footer = ({ name, link }: designerType) => {
           </Link>
         </div>
       </section>
-      <section className="border-t-black border-t-[1px] border-t-solid flex justify-center p-[2em]">
+      <section className="border-t-black border-t-[1px] border-t-solid flex justify-center p-[2em] max-md:mb-[4em]">
         <span className="text-[1.5em] font-bold max-lg:text-[1em]">
           Design por{' '}
           <Link

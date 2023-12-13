@@ -100,7 +100,7 @@ const Admin = () => {
 
   return (
     <>
-      <section className="min-h-[70%] bg-[#000033] flex justify-center items-center mt-[1em] ">
+      <section className="min-h-[70%] bg-[#000033] flex justify-center items-center mt-[1em] max-md:mt-[6em]">
         {createdProduct ? (
           <ImageForm
             createdProduct={createdProduct}

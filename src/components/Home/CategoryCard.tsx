@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import mockCategoryImage from '@/assets/images/mock-category-img.svg';
+import mockCategoryImage from '@/assets/images/home-page/mock-category-img.svg';
 
 interface CategoryCardProps {
   label: string;
@@ -8,7 +8,7 @@ interface CategoryCardProps {
 
 const CategoryCard = ({ label }: CategoryCardProps) => {
   return (
-    <div className="flex flex-col justify-center items-center px-4 text-center bg-[#F3F3F3] h-[277px] w-[267px] rounded-md hover:scale-[1.025] transition-all cursor-pointer max-lg:h-auto">
+    <div className="flex flex-col justify-center items-center px-4 text-center bg-[#F3F3F3] h-fit w-fit rounded-md hover:scale-[1.025] transition-all cursor-pointer max-lg:h-auto">
       <Image
         src={mockCategoryImage}
         width={86}

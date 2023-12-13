@@ -1,11 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import appstoreImage from '@/assets/images/appstore_download.svg';
-import googlestoreImage from '@/assets/images/googleplay_download.svg';
-import iphoneImage from '@/assets/images/iphone.svg';
+import appstoreImage from '@/assets/images/home-page/appstore_download.svg';
+import googlestoreImage from '@/assets/images/home-page/googleplay_download.svg';
+import iphoneImage from '@/assets/images/home-page/iphone.svg';
 
-import SwiperHome from './SwiperHome';
+import SwiperHome from '../SwiperHome';
 
 const AppStore = () => {
   return (

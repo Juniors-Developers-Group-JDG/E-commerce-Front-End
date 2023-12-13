@@ -1,14 +1,14 @@
 'use client';
 
-import CartProducts from '@/components/Cart/CartProducts';
-import CartSuggestions from '@/components/Cart/CartSuggestions';
-import CartSummary from '@/components/Cart/CartSummary';
+import CartProducts from '@/components/Cart/page/CartProducts';
+import CartSuggestions from '@/components/Cart/page/CartSuggestions';
+import CartSummary from '@/components/Cart/page/CartSummary';
 import Footer, { designer_juan } from '@/components/Layout/Footer';
 
 const Cart = () => {
   return (
     <>
-      <main className="flex-1 w-[95%] px-12 max-md:px-6 mt-6 mx-auto">
+      <main className="flex-1 w-[95%] px-12 max-md:px-6 mt-6 mx-auto max-md:mt-[6em]">
         <h1 className="font-bold text-[2.25em] max-md:text-[1.5em] underline underline-offset-8">
           Meu Carrinho
         </h1>

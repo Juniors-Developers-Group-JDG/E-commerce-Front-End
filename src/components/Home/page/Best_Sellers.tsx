@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import jblImage from '@/assets/images/jbl.svg';
-import lineImage from '@/assets/images/line.svg';
+import jblImage from '@/assets/images/home-page/jbl.svg';
+import lineImage from '@/assets/images/home-page/line.svg';
 
-import SwiperHome from './SwiperHome';
+import SwiperHome from '../SwiperHome';
 
 const Best_Sellers = () => {
   return (

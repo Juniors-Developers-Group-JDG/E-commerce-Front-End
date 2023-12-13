@@ -1,18 +1,18 @@
 'use client';
 
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 
+import deleteIcon from '@/assets/images/cart-page/cart-delete.svg';
+import minusIcon from '@/assets/images/cart-page/cart-minus.svg';
+import plusIcon from '@/assets/images/cart-page/cart-plus.svg';
 import { priceToString } from '@/utils/price-formatting';
-import minusIcon from '@/assets/images/cart-minus.svg';
-import plusIcon from '@/assets/images/cart-plus.svg';
-import deleteIcon from '@/assets/images/cart-delete.svg';
 
 import CartButton from './CartButton';
 
 export interface CartProductItem {
   name: string;
   price: number;
-  imageUrl: string;
+  imageUrl: StaticImageData;
   quantity: number;
   totalPrice: number;
 }

@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { FormEvent } from 'react';
 
-import padlockImage from '@/assets/images/padlock.svg';
+import padlockImage from '@/assets/images/forgot-page/padlock.svg';
 import Footer, { designer_thaissa } from '@/components/Layout/Footer';
 
 const Forgot = () => {

@@ -1,8 +1,8 @@
 import Image, { StaticImageData } from 'next/image';
 import Link from 'next/link';
 
-import cartImage from '@/assets/images/cart.svg';
-import plusImage from '@/assets/images/plus.svg';
+import cartImage from '@/assets/images/layout/cart.svg';
+import plusImage from '@/assets/images/layout/plus.svg';
 
 interface Props {
   image: string | StaticImageData;

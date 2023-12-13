@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Lato } from 'next/font/google';
 
 import Header from '@/components/Layout/Header';
+import TabBar from '@/components/Layout/TabBar';
 import ReactQueryProviderUseClient from '@/providers/ReactQueryProviderUseClient';
 
 const lato = Lato({
@@ -27,6 +28,7 @@ export default function RootLayout({
         <ReactQueryProviderUseClient>
           <Header />
           {children}
+          <TabBar />
         </ReactQueryProviderUseClient>
       </body>
     </html>

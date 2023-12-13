@@ -1,5 +1,4 @@
-import ps5Image from '@/assets/images/ps5.svg';
-import xboxImage from '@/assets/images/xbox.svg';
+import defaultImage from '@/assets/images/default.png';
 
 import CartProduct, { CartProductItem } from './CartProduct';
 
@@ -13,14 +12,14 @@ const mockProducts = [
   {
     name: 'Xbox Series X',
     price: 4999.99,
-    imageUrl: xboxImage,
+    imageUrl: defaultImage,
     quantity: 1,
     totalPrice: 4999.99,
   },
   {
     name: 'PlayStation 5',
     price: 4999.99,
-    imageUrl: ps5Image,
+    imageUrl: defaultImage,
     quantity: 2,
     totalPrice: 9999.98,
   },

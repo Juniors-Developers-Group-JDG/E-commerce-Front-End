@@ -1,14 +1,14 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import XImage from '@/assets/images/X.svg';
+import XImage from '@/assets/images/home-page/X.svg';
 
-import SwiperHome from './SwiperHome';
+import SwiperHome from '../SwiperHome';
 
 const Banner = () => {
   return (
     <article className="my-[2em]">
-      <section className="bg-[#000033] rounded-[0.625em] w-[95%] h-[35em] mx-auto text-white font-bold flex justify-around items-center max-md:h-auto max-md:flex-col-reverse">
+      <section className="bg-[#000033] rounded-[0.625em] w-[95%] h-[35em] mx-auto text-white font-bold flex justify-around items-center max-md:h-auto max-md:flex-col-reverse max-md:mt-[6em]">
         <div className="w-[40%] flex flex-col justify-evenly h-full max-lg:mx-[4em] max-lg:w-[65%] max-md:mb-[5em] max-md:gap-[1em]">
           <h3 className="text-[3em] max-lg:text-[2em]">
             Lorem ipsum dolor sit amet

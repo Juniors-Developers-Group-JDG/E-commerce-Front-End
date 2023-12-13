@@ -5,9 +5,9 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-import checkImage from '@/assets/images/check.svg';
-// import productsStarBlueImage from '@/assets/images/productsStarBlue.svg';
-// import productsStarGrayImage from '@/assets/images/productsStarGray.svg';
+import checkImage from '@/assets/images/product-page/check.svg';
+// import productsStarBlueImage from '@/assets/images/product-page/productsStarBlue.svg';
+// import productsStarGrayImage from '@/assets/images/product-page/productsStarGray.svg';
 import Footer, { designer_rafael } from '@/components/Layout/Footer';
 import SwiperProducts from '@/components/Products/SwiperProducts';
 
@@ -149,7 +149,7 @@ const Products = () => {
 
   return (
     <>
-      <main className={`${inter.className} mt-[3em] flex-1`}>
+      <main className={`${inter.className} mt-[3em] flex-1 max-md:mt-[6em]`}>
         <section className="max-w-[80%] mx-auto">
           <h2 className="text-[3em] flex justify-center mb-[.5em]">Produtos</h2>
           <section className="mb-[2em]">
@@ -236,8 +236,7 @@ const Products = () => {
                 </div>
                 <div className="flex flex-col items-baseline w-fit relative gap-[1em]">
                   <input
-                    // onMouseUp={checkPrice}
-                    onMouseUpCapture={checkPrice}
+                    onPointerUp={checkPrice}
                     className="w-[9em] mb-[.5em] flex self-center"
                     type="range"
                     min={lowestProductPrice}

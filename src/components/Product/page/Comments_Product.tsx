@@ -1,7 +1,7 @@
 import Image, { StaticImageData } from 'next/image';
 
-import deslikeIcon from '@/assets/images/deslike.svg';
-import likeIcon from '@/assets/images/like.svg';
+import deslikeIcon from '@/assets/images/product-page/deslike.svg';
+import likeIcon from '@/assets/images/product-page/like.svg';
 
 import StarRating from './StarRating';
 
