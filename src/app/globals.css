@@ -36,16 +36,18 @@ input[type="range"] {
   border-radius: 1em;
   height: .3em;
   background: #B8C5D5;
+  overflow: hidden;
 }
 
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none; 
   height: 1em;
-  width: 1em;
+  width: .1px;
   background-color: #000033;
   border-radius: 50%;
   border: none;
+  box-shadow: -200px 0 0 200px #000033;
 }
 
 .swiper-button-next::after, .swiper-button-prev::after  {
