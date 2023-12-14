@@ -34,7 +34,7 @@ const Banner = () => {
             Queima de estoque
           </h3>
           <div className="flex justify-between max-md:flex-col">
-            <p className="text-[1.5em]">Produtos com 20 a 60% de desconto</p>
+            <p className="text-[1.5em]">Produtos com desconto.</p>
             <Link
               href="/promotions"
               className="text-[#3282B8] text-[1.5em] font-semibold self-end transition-all cursor-pointer hover:scale-[1.1]"
@@ -45,7 +45,7 @@ const Banner = () => {
         </div>
         <div className="flex justify-around mt-[2em]">
           <div className="flex w-full justify-evenly max-h-[25em]">
-            <SwiperHome />
+            <SwiperHome fetchStyle="discount" />
           </div>
         </div>
       </section>

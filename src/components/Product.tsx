@@ -43,7 +43,7 @@ const Product = ({
       />
       <div className="flex flex-col bottom-0 max-w-[15em] relative flex-1">
         <span className="py-0 px-[1em] min-h-[3em]">
-          {title.length > 35 ? title.slice(0, 35) + '...' : title}
+          {title.length > 30 ? title.slice(0, 30) + '...' : title}
         </span>
         <div className="relative h-fit flex flex-col justify-end mb-[1em]">
           <div

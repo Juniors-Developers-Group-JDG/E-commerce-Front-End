@@ -1,6 +1,6 @@
 'use client';
 
-import Image, { StaticImageData } from 'next/image';
+import Image from 'next/image';
 
 import deleteIcon from '@/assets/images/cart-page/cart-delete.svg';
 import minusIcon from '@/assets/images/cart-page/cart-minus.svg';
@@ -12,24 +12,19 @@ import CartButton from './CartButton';
 export interface CartProductItem {
   name: string;
   price: number;
-  imageUrl: StaticImageData;
+  imageUrl: string;
   quantity: number;
-  totalPrice: number;
 }
 
-const CartProduct = ({
-  name,
-  price,
-  imageUrl,
-  quantity,
-  totalPrice,
-}: CartProductItem) => {
+const CartProduct = ({ name, price, imageUrl, quantity }: CartProductItem) => {
   return (
     <div className="flex max-md:justify-between py-6 px-4 border-b-[1px] border-black border-opacity-80 max-lg:gap-4">
       <Image
         src={imageUrl}
         alt={`Imagem do produto: ${name}`}
-        className="w-[350px] max-xl:w-[280px] max-lg:w-[130px] max-sm:w-[75px]"
+        width={250}
+        height={250}
+        className="max-h-[16em] mix-blend-multiply object-contain"
       />
       <div className="flex flex-col justify-between">
         <div className="flex flex-col gap-3">
@@ -42,17 +37,17 @@ const CartProduct = ({
                 <span className="font-bold">{quantity}x </span>
                 <sup>R$</sup>{' '}
                 <span className="font-bold">
-                  {priceToString(price).integerPrice}{' '}
+                  {priceToString(price, 1).integerPrice}{' '}
                 </span>
-                <sup> {priceToString(price).centsPrice}</sup>
+                <sup> {priceToString(price, 1).centsPrice}</sup>
               </div>
             )}
             <div>
               <sup>R$</sup>{' '}
               <span className="font-bold">
-                {priceToString(totalPrice).integerPrice}{' '}
+                {priceToString(price, quantity).integerPrice}{' '}
               </span>
-              <sup> {priceToString(totalPrice).centsPrice}</sup>
+              <sup> {priceToString(price, quantity).centsPrice}</sup>
             </div>
           </div>
         </div>

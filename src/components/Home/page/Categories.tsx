@@ -88,7 +88,7 @@ const Categories = ({ categories = mockCategoriesData }: CategoriesProps) => {
           </div>
         </div>
         <div className="flex justify-around mt-[2em]">
-          <SwiperHome />
+          <SwiperHome fetchStyle="normal" />
         </div>
       </div>
     </article>

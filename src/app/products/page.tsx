@@ -376,11 +376,8 @@ const Products = () => {
           <section>
             <div className="flex justify-between text-[1.5em] max-lg:flex-col">
               <div>
-                {/* Exibindo: 1 - 12 de{' '} */}
                 Exibindo{' '}
-                {productsFetchQuantity !== 0
-                  ? productsFetchQuantity
-                  : '20'}{' '}
+                {productsFetchQuantity !== 0 ? productsFetchQuantity : '20'}{' '}
                 {productsFetchQuantity > 1 ? 'resultados' : 'resultado'}
               </div>
 

@@ -1,46 +1,29 @@
-import defaultImage from '@/assets/images/default.png';
+import Product from '@/components/Product';
+import useQueryGetProducts from '@/hooks/useQueryGetProducts';
 
-import CartSuggestionsProduct, {
-  CartSuggestionsProductItem,
-} from './CartSuggestionsProduct';
+const CartSuggestions = () => {
+  const { data } = useQueryGetProducts();
 
-interface CartSuggestionsProps {
-  suggestions?: CartSuggestionsProductItem[];
-}
-
-const mockProducts = [
-  {
-    name: 'Xbox Series X',
-    price: 4999.99,
-    imageUrl: defaultImage,
-    totalPrice: 4999.99,
-  },
-  {
-    name: 'PlayStation 5',
-    price: 4999.99,
-    imageUrl: defaultImage,
-    totalPrice: 9999.98,
-    discount: 20,
-  },
-];
-
-const CartSuggestions = ({
-  suggestions = mockProducts,
-}: CartSuggestionsProps) => {
   return (
     <div className="flex flex-col items-center py-6 px-4 bg-[#ededed] rounded-xl gap-5 max-h-[640px] max-xl:max-h-[500px] max-lg:max-h-[300px] overflow-y-scroll shadow-[0_0_10px_rgb(0,0,0,0.2)]">
       <h2 className="text-center text-[1.5em] mb-2">
         Esqueceu <span className="underline underline-offset-8">Isso</span>?
       </h2>
-      {suggestions.map((suggestionItem, index) => (
-        <CartSuggestionsProduct
-          key={index}
-          name={suggestionItem.name}
-          price={suggestionItem.price}
-          imageUrl={suggestionItem.imageUrl}
-          discount={suggestionItem.discount}
-        />
-      ))}
+      {data &&
+        data
+          .slice(2, 4)
+          .map((suggestionItem, index) => (
+            <Product
+              key={index}
+              title={suggestionItem.name}
+              price={suggestionItem.price.toString()}
+              image={suggestionItem.images[0]}
+              discount={suggestionItem.discount.toString()}
+              division={''}
+              olderPrice={suggestionItem.price.toString()}
+              link={`/product/${index + 3}`}
+            />
+          ))}
     </div>
   );
 };

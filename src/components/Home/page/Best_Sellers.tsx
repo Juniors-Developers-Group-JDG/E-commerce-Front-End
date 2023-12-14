@@ -77,7 +77,7 @@ const Best_Sellers = () => {
           </div>
         </div>
         <div className="flex justify-around mt-[2em]">
-          <SwiperHome />
+          <SwiperHome fetchStyle="newest" />
         </div>
       </section>
       <section className="bg-[#000033] h-[8.75em] flex items-center text-white font-bold text-justify text-[1.5em] max-lg:text-[1em] max-md:items-baseline max-md:flex-col max-md:text-[.85em]">

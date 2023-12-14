@@ -168,18 +168,19 @@ const Product = () => {
             </div>
             <div className="w-fit h-24 justify-start items-end gap-4 inline-flex max-xl:flex-col max-xl:gap-0 max-xl:h-auto max-xl:items-baseline">
               <div className="flex-col justify-start items-start gap-2 inline-flex">
-                {/* // if product has discount, add later */}
-                {/* <div className="justify-start items-start gap-2 inline-flex relative">
-                  <div className="w-36 h-0.5 origin-top-left rotate-[-2.80deg] bg-cyan-600 absolute translate-y-5" />
-                  <div className="text-black text-base font-medium">R$</div>
-                  {productData[0] && (
-                    <>
-                      <div className="text-black text-3xl font-bold">
-                        {productData[0].price.toFixed(2)}
-                      </div>
-                    </>
-                  )}
-                </div> */}
+                {productData[0] && productData[0].discount !== 0 && (
+                  <div className="justify-start items-start gap-2 inline-flex relative">
+                    <div className="w-36 h-0.5 origin-top-left rotate-[-2.80deg] bg-cyan-600 absolute translate-y-5" />
+                    <div className="text-black text-base font-medium">R$</div>
+                    {productData[0] && (
+                      <>
+                        <div className="text-black text-3xl font-bold">
+                          {productData[0].price.toFixed(2)}
+                        </div>
+                      </>
+                    )}
+                  </div>
+                )}
                 <div className="justify-start items-start gap-2 inline-flex text-[#000033]">
                   <div className="text-[1.563em] font-medium">R$</div>
                   {productData[0] && (
@@ -201,9 +202,6 @@ const Product = () => {
                 <button className="w-max h-10 px-6 py-2 bg-[#10D03A] rounded-lg justify-center items-center gap-3 inline-flex">
                   Adicionar ao carrinho
                 </button>
-                {/* <button className="h-10 px-6 py-2 bg-[#2EE356] rounded-lg justify-center items-center gap-3 inline-flex flex-1">
-                  Comprar
-                </button> */}
               </div>
             </div>
             <div className="w-full text-black text-base font-normal flex alig">

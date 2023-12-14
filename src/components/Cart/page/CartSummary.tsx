@@ -1,10 +1,20 @@
+import useQueryGetProducts from '@/hooks/useQueryGetProducts';
+
+import { quantity } from './CartProducts';
+
 const CartSummary = () => {
+  const { data } = useQueryGetProducts();
+
+  const productsSum = data
+    ?.slice(0, 2)
+    .reduce((a, b, index) => a + b.price * quantity[index], 0);
+
   return (
     <div className="flex flex-col gap-3 bg-[#ededed] rounded-xl py-6 px-4 text-[1.25em] max-lg:text-[1em] shadow-[0_0_10px_rgb(0,0,0,0.2)]">
       <p className="flex justify-between">
         Produtos:{' '}
         <span className="font-bold">
-          R$ {(14999.97).toLocaleString('pt-BR')}
+          R$ {productsSum && productsSum.toLocaleString('pt-BR')}
         </span>
       </p>
       <p className="flex justify-between">
@@ -15,10 +25,11 @@ const CartSummary = () => {
         Total:{' '}
         <span className="font-bold">
           R${' '}
-          {(14999.97 + 36.53).toLocaleString('pt-BR', {
-            style: 'decimal',
-            minimumFractionDigits: 2,
-          })}
+          {productsSum &&
+            (productsSum + 36.53).toLocaleString('pt-BR', {
+              style: 'decimal',
+              minimumFractionDigits: 2,
+            })}
         </span>
       </p>
 

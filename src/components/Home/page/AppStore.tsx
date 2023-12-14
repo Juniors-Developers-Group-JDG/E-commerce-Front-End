@@ -61,7 +61,7 @@ const AppStore = () => {
           </div>
         </div>
         <div className="flex justify-around mt-[2em]">
-          <SwiperHome />
+          <SwiperHome fetchStyle="normal" />
         </div>
       </section>
     </article>
