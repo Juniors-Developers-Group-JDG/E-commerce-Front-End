@@ -2,6 +2,8 @@
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
+import 'react-toastify/ReactToastify.css';
 
 import Footer, { designer_thaissa } from '@/components/Layout/Footer';
 
@@ -22,11 +24,13 @@ const Login = () => {
 
     if (!isValidEmail(email)) {
       console.error('invalid email format');
+      toast.info('Informe seu email e senha cadastrados!');
       return;
     }
 
     if (!email || !password) {
       console.error('Enter your email and password to proceed');
+      toast.info('Informe seu email e senha cadastrados!');
       return;
     }
 
@@ -46,8 +50,10 @@ const Login = () => {
 
     if (response.status === 200) {
       console.log('Logged in');
+      toast.success('Login realizado com sucesso!');
       router.push('/');
     } else {
+      toast.error('Credenciais inválidas!');
       console.error('Invalid login credentials');
     }
   };

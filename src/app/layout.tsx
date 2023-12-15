@@ -1,6 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Lato } from 'next/font/google';
+import { ToastContainer } from 'react-toastify';
 
 import Header from '@/components/Layout/Header';
 import TabBar from '@/components/Layout/TabBar';
@@ -30,6 +31,11 @@ export default function RootLayout({
           {children}
           <TabBar />
         </ReactQueryProviderUseClient>
+        <ToastContainer
+          autoClose={1500}
+          pauseOnFocusLoss={false}
+          pauseOnHover={false}
+        />
       </body>
     </html>
   );

@@ -1,8 +1,11 @@
 'use client';
 
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 import RegisterInput from './RegisterInput';
+
+import 'react-toastify/ReactToastify.css';
 
 const RegisterForm = () => {
   const [checkbox, setCheckbox] = useState(false);
@@ -13,8 +16,15 @@ const RegisterForm = () => {
   const [emailError, setEmailError] = useState('');
   // const [existingEmails, setExistingEmails] = useState([]);
 
-  const handleRegister = async () => {
+  const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     try {
+      e.preventDefault();
+      const formData = new FormData(e.currentTarget);
+      const nameForm = formData.get('name') as string;
+      const emailForm = formData.get('email') as string;
+      const passwordForm = formData.get('password') as string;
+      const confirmPasswordForm = formData.get('confirmPassword') as string;
+
       const validateEmail = (email: string) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
@@ -22,6 +32,7 @@ const RegisterForm = () => {
 
       if (!validateEmail(email)) {
         setEmailError('O formato do e-mail é inválido');
+        toast.info('Informe seu email!');
         return;
       }
 
@@ -30,26 +41,38 @@ const RegisterForm = () => {
       //   return;
       // }
 
-      const urlRegister =
-        'https://e-commerce-backend-am7w.onrender.com/api/users/register/';
+      if (
+        nameForm &&
+        emailForm &&
+        passwordForm &&
+        confirmPasswordForm &&
+        checkbox
+      ) {
+        const urlRegister =
+          'https://e-commerce-backend-am7w.onrender.com/api/users/register/';
 
-      const response = await fetch(urlRegister, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          password,
-          confirmPassword,
-        }),
-      });
+        const response = await fetch(urlRegister, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            password,
+            confirmPassword,
+          }),
+        });
 
-      if (response.ok) {
-        console.log('YEAAAH! This user was registered.');
+        if (response.ok) {
+          toast.success('Usuário criado com sucesso!');
+          console.log('YEAAAH! This user was registered.');
+        } else {
+          toast.error('Algo deu errado no seu cadastro!');
+          console.error('Sorry! Failed finish your registration.');
+        }
       } else {
-        console.error('Sorry! Failed finish your registration.');
+        toast.info('Insira todos os campos!');
       }
     } catch (error) {
       console.log(`Error: `, error);
@@ -61,7 +84,7 @@ const RegisterForm = () => {
       <h2 className="font-bold text-[1.5em] text-[#000033] text-center mb-5">
         Crie sua conta
       </h2>
-      <form onSubmit={event => event.preventDefault()} method="post">
+      <form onSubmit={handleRegister} method="post">
         <RegisterInput
           type="text"
           label="Nome"
@@ -117,12 +140,11 @@ const RegisterForm = () => {
           </span>
         </label>
 
-        <button
-          className="w-full text-white font-bold text-[.875em] bg-[#3282B8] py-1 rounded outline-[#BBE1FA] transition-all hover:scale-105"
-          onClick={handleRegister}
-        >
-          Criar conta
-        </button>
+        <input
+          type="submit"
+          className="w-full text-white font-bold text-[.875em] bg-[#3282B8] py-1 rounded outline-[#BBE1FA] cursor-pointer transition-all hover:scale-105"
+          value={'Criar conta'}
+        />
       </form>
     </div>
   );
