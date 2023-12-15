@@ -179,7 +179,13 @@ const Products = () => {
   const checkPrice = (e: React.MouseEvent<HTMLInputElement>) => {
     const currentTarget = e.currentTarget as HTMLInputElement;
     if (productsDiscount !== 0) return;
-    if (location.search.split('search=')[1] !== '') return;
+    if (
+      location.search.split('search=')[1] &&
+      location.search.split('search=')[1] !== ''
+    ) {
+      return;
+    }
+    console.log('Opa');
     setPriceFiltered(Number(currentTarget.value));
   };
 
