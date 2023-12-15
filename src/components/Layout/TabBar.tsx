@@ -28,7 +28,7 @@ const TabBar = () => {
           style={{ width: '2em', height: '2em' }}
         />
       </Link>
-      <Link href={'/'}>
+      <Link href={'/login'}>
         <Image
           className="transition-all cursor-pointer hover:scale-[1.1] max-lg:w-[35%] max-md:w-full"
           src={userImage}

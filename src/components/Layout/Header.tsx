@@ -8,8 +8,8 @@ import { useEffect } from 'react';
 
 import arrowImage from '@/assets/images/layout/arrow.svg';
 import cartImage from '@/assets/images/layout/cart.svg';
-import searchImage from '@/assets/images/layout/search.svg';
 import userImage from '@/assets/images/layout/user.svg';
+import Search from '@/components/Layout/Search';
 
 const krona_one = Krona_One({
   subsets: ['latin'],
@@ -119,20 +119,7 @@ const Header = () => {
         </ul>
       </nav>
       <div className="flex gap-[4em] items-center max-md:hidden max-lg:gap-[1em]">
-        <div className="relative">
-          <Image
-            className="absolute top-[.4em] left-[.8em]"
-            src={searchImage}
-            width={16}
-            height={16}
-            alt="Imagem lupa"
-          />
-          <input
-            className={`border-[1px] border-solid border-[#3282B8] rounded-xl indent-[3.5em] py-[.2em] px-0 ${montserrat.className} max-lg:w-[9em] max-lg:indent-[2.5em] max-md:w-[11em]`}
-            type="text"
-            placeholder="Pesquisar"
-          />
-        </div>
+        <Search />
         <div className="flex w-full justify-evenly">
           <Link href="/cart" className="contents">
             <Image
@@ -145,14 +132,16 @@ const Header = () => {
             />
           </Link>
           <div className="flex">
-            <Image
-              className="lg:ml-[1.5em] transition-all cursor-pointer hover:scale-[1.1] max-lg:w-[35%] max-md:w-full"
-              src={userImage}
-              width={30}
-              height={30}
-              alt="Imagem usuário"
-              style={{ width: 'auto', height: 'auto' }}
-            />
+            <Link href={'/login'} className="contents">
+              <Image
+                className="lg:ml-[1.5em] transition-all cursor-pointer hover:scale-[1.1] max-lg:w-[35%] max-md:w-full"
+                src={userImage}
+                width={30}
+                height={30}
+                alt="Imagem usuário"
+                style={{ width: 'auto', height: 'auto' }}
+              />
+            </Link>
             <Image
               className="transition-all cursor-pointer hover:scale-[1.3] max-lg:w-[35%]"
               src={arrowImage}

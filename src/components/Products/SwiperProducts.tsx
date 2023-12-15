@@ -9,6 +9,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/grid';
 
 import useQueryGetProducts from '@/hooks/useQueryGetProducts';
+import { Product as ProductModel } from '@/models/product';
 
 import Product from '../Product';
 
@@ -20,6 +21,7 @@ interface Props {
   higherProductPrice: number;
   lowestProductPrice: number;
   priceFiltered: number;
+  searchedProducts: ProductModel[];
 }
 
 const SwiperProducts = ({
@@ -30,6 +32,7 @@ const SwiperProducts = ({
   lowestProductPriceFn,
   lowestProductPrice,
   priceFiltered,
+  searchedProducts,
 }: Props) => {
   const { data, isFetching, isError } = useQueryGetProducts();
 
@@ -56,6 +59,13 @@ const SwiperProducts = ({
             productsOnScreen.push(1);
           }
           productsFetchQuantityFn(productsOnScreen.length);
+        } else if (searchedProducts !== undefined) {
+          for (let i = 0; i < searchedProducts.length; i++) {
+            if (prod.name === searchedProducts[i].name) {
+              productsOnScreen.push(1);
+            }
+          }
+          productsFetchQuantityFn(productsOnScreen.length);
         } else {
           productsFetchQuantityFn(data.length);
         }
@@ -70,6 +80,7 @@ const SwiperProducts = ({
     lowestProductPrice,
     lowestProductPriceFn,
     priceFiltered,
+    searchedProducts,
   ]);
 
   return (
@@ -113,28 +124,53 @@ const SwiperProducts = ({
               },
             }}
           >
-            {data?.map((prod, index) => (
-              <React.Fragment key={index}>
-                <SwiperSlide
-                  key={prod._id}
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'space-evenly',
-                    padding: '1em 0',
-                  }}
-                >
-                  <Product
-                    title={prod.name}
-                    price={prod.price?.toString()}
-                    image={prod.images[0]}
-                    discount={prod.discount.toString()}
-                    division=""
-                    olderPrice={prod.price?.toString()}
-                    link={`/product/${index + 1}`}
-                  />
-                </SwiperSlide>
-              </React.Fragment>
-            ))}
+            {searchedProducts &&
+              searchedProducts.length > 0 &&
+              searchedProducts.map((prod, index) => (
+                <React.Fragment key={index}>
+                  <SwiperSlide
+                    key={prod._id}
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-evenly',
+                      padding: '1em 0',
+                    }}
+                  >
+                    <Product
+                      title={prod.name}
+                      price={prod.price?.toString()}
+                      image={prod.images[0]}
+                      discount={prod.discount.toString()}
+                      division=""
+                      olderPrice={prod.price?.toString()}
+                      link={`/product/${index + 1}`}
+                    />
+                  </SwiperSlide>
+                </React.Fragment>
+              ))}
+            {!searchedProducts &&
+              data?.map((prod, index) => (
+                <React.Fragment key={index}>
+                  <SwiperSlide
+                    key={prod._id}
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-evenly',
+                      padding: '1em 0',
+                    }}
+                  >
+                    <Product
+                      title={prod.name}
+                      price={prod.price?.toString()}
+                      image={prod.images[0]}
+                      discount={prod.discount.toString()}
+                      division=""
+                      olderPrice={prod.price?.toString()}
+                      link={`/product/${index + 1}`}
+                    />
+                  </SwiperSlide>
+                </React.Fragment>
+              ))}
           </Swiper>
         ) : (
           <Swiper

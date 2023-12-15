@@ -7,5 +7,5 @@ type Product = {
   amount: number;
   discount: number;
   category: string[];
-  created_at: string;
+  created_at?: string;
 };

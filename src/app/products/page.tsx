@@ -3,13 +3,14 @@
 import { Inter } from 'next/font/google';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, useRef } from 'react';
 
 import checkImage from '@/assets/images/product-page/check.svg';
 // import productsStarBlueImage from '@/assets/images/product-page/productsStarBlue.svg';
 // import productsStarGrayImage from '@/assets/images/product-page/productsStarGray.svg';
 import Footer, { designer_rafael } from '@/components/Layout/Footer';
 import SwiperProducts from '@/components/Products/SwiperProducts';
+import useQueryGetProducts from '@/hooks/useQueryGetProducts';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -22,7 +23,36 @@ const Products = () => {
   const [higherProductPrice, setHigherProductPrice] = useState<number>(0);
   const [lowestProductPrice, setLowestProductPrice] = useState<number>(1000);
   const [priceFiltered, setPriceFiltered] = useState<number>(0);
+  const [searchedProducts, setSearchedProducts] = useState<Product[]>();
+  const { data } = useQueryGetProducts();
   const router = useRouter();
+  const textValueRef = useRef<string>('');
+
+  const handleSearchProduct = useCallback(
+    (textValue: string) => {
+      if (data && location.search.split('search').length > 1) {
+        textValueRef.current = location.search;
+        const titleCheck = data.filter(prod =>
+          prod.name.toLowerCase().includes(textValue),
+        );
+
+        const foundTexts: Product[] = [];
+        const higherLength = titleCheck.length;
+
+        for (let i = 0; i < higherLength!; i++) {
+          if (titleCheck[i] !== undefined) {
+            foundTexts.push(titleCheck[i]);
+          }
+        }
+
+        const setFoundTexts = new Set([...foundTexts]);
+
+        const uniqueFoundTexts = Array.from(setFoundTexts);
+        setSearchedProducts(uniqueFoundTexts);
+      }
+    },
+    [data],
+  );
 
   useEffect(() => {
     if (document) {
@@ -37,17 +67,22 @@ const Products = () => {
           '.swiper-button-next',
         ) as HTMLDivElement)!.style.display = 'none';
       }
+      setInterval(() => {
+        handleSearchProduct(location.search.split('search=')[1]);
+      }, 1000);
       if (location.search !== '') {
-        (
-          document.getElementById('discounts-area')!.children[2].children[0]
-            .children[0] as HTMLSpanElement
-        ).setAttribute('is-checked', 'true');
-        (
-          document.getElementById('discounts-area')!.children[2].children[0]
-            .children[0] as HTMLSpanElement
-        ).style.opacity = '1';
-        setProductsDiscount(20);
-        router.push('/products');
+        if (location.search === '?discount=20') {
+          (
+            document.getElementById('discounts-area')!.children[2].children[0]
+              .children[0] as HTMLSpanElement
+          ).setAttribute('is-checked', 'true');
+          (
+            document.getElementById('discounts-area')!.children[2].children[0]
+              .children[0] as HTMLSpanElement
+          ).style.opacity = '1';
+          setProductsDiscount(20);
+          router.push('/products');
+        }
       }
       if (document.querySelector('.swiper-wrapper')) {
         (
@@ -55,7 +90,7 @@ const Products = () => {
         ).style.flexWrap = 'wrap';
       }
     }
-  }, [productsFetchQuantity, router]);
+  }, [productsFetchQuantity, router, handleSearchProduct]);
 
   const checkFilter = (e: React.MouseEvent) => {
     const currentTarget = e.currentTarget as HTMLDivElement;
@@ -144,6 +179,7 @@ const Products = () => {
   const checkPrice = (e: React.MouseEvent<HTMLInputElement>) => {
     const currentTarget = e.currentTarget as HTMLInputElement;
     if (productsDiscount !== 0) return;
+    if (location.search.split('search=')[1] !== '') return;
     setPriceFiltered(Number(currentTarget.value));
   };
 
@@ -377,7 +413,7 @@ const Products = () => {
             <div className="flex justify-between text-[1.5em] max-lg:flex-col">
               <div>
                 Exibindo{' '}
-                {productsFetchQuantity !== 0 ? productsFetchQuantity : '20'}{' '}
+                {productsFetchQuantity !== 0 ? productsFetchQuantity : '0'}{' '}
                 {productsFetchQuantity > 1 ? 'resultados' : 'resultado'}
               </div>
 
@@ -405,6 +441,7 @@ const Products = () => {
             lowestProductPriceFn={setLowestProductPrice}
             lowestProductPrice={lowestProductPrice}
             priceFiltered={priceFiltered}
+            searchedProducts={searchedProducts!}
           />
         </div>
       </main>

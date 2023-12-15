@@ -7,4 +7,5 @@ export type Product = {
   amount: number;
   discount: number;
   category: string[];
+  reviews?: string[];
 };
