@@ -24,7 +24,7 @@ type ProductPostResponse = {
 const Admin = () => {
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
-  const [category, setCategory] = useState<string>('');
+  const [category, setCategory] = useState<string>(Categories.default);
   const [amount, setAmount] = useState('');
   const [description, setDescription] = useState('');
   const [createdProduct, setCreatedProduct] = useState<Product | null>(null);
