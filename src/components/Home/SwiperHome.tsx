@@ -15,7 +15,7 @@ interface Props {
 
 const SwiperHome = ({ fetchStyle }: Props) => {
   const { data, isFetching, isError } = useQueryGetProducts();
-  const reversedData = data?.reverse();
+  const reversedData = data?.slice().reverse();
 
   switch (fetchStyle) {
     case 'normal': {
@@ -192,7 +192,7 @@ const SwiperHome = ({ fetchStyle }: Props) => {
                         discount={prod.discount.toString()}
                         division=""
                         olderPrice={prod.price?.toString()}
-                        link={`/product/${index + 1}`}
+                        link={`/product/${reversedData.length - index}`}
                       />
                     </SwiperSlide>
                   </React.Fragment>
