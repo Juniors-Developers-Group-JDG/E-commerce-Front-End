@@ -1,10 +1,14 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/ReactToastify.css';
 
+import hidePassword from '@/assets/images/register-page/hide-password.svg';
+import showPassword from '@/assets/images/register-page/show-password.svg';
 import Footer, { designer_thaissa } from '@/components/Layout/Footer';
 
 const isValidEmail = (e: string): boolean => {
@@ -13,7 +17,12 @@ const isValidEmail = (e: string): boolean => {
 };
 
 const Login = () => {
+  const [isPasswordShowing, setIsPasswordShowing] = useState(false);
   const router = useRouter();
+
+  const handleTogglePasswordValueClick = () => {
+    setIsPasswordShowing(state => !state);
+  };
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -69,7 +78,10 @@ const Login = () => {
             <span className="text-[#3282B8] font-calibri">
               Informe os dados para acessa-la
             </span>
-            <form className="flex flex-col mb-[1em]" onSubmit={handleLogin}>
+            <form
+              className="relative flex flex-col mb-[1em]"
+              onSubmit={handleLogin}
+            >
               <input
                 name="email"
                 className="w-[21.875em] h-[3.669em] bg-[#000000] text-[#ffffff] rounded-[.25em] mt-[1.313em] mb-[1.875em] p-[1em] outline-none hover:ring hover:ring-[#3282B8] focus:ring focus:ring-[#BBE1FA]"
@@ -79,9 +91,29 @@ const Login = () => {
               <input
                 name="password"
                 className="w-[21.875em] h-[3.669em] bg-[#000000] text-[#ffffff] rounded-[.25em] p-[1em] outline-none hover:ring hover:ring-[#3282B8] focus:ring focus:ring-[#BBE1FA]"
-                type="text"
+                type={isPasswordShowing ? 'text' : 'password'}
                 placeholder="Senha"
               />
+              <div
+                onClick={handleTogglePasswordValueClick}
+                className="absolute flex justify-end items-center top-0 right-8 h-full"
+              >
+                {isPasswordShowing ? (
+                  <Image
+                    alt="Hide password button"
+                    src={hidePassword}
+                    className="cursor-pointer"
+                    title="Esconder senha"
+                  />
+                ) : (
+                  <Image
+                    alt="Show password button"
+                    src={showPassword}
+                    className="cursor-pointer"
+                    title="Mostrar senha"
+                  />
+                )}
+              </div>
               <div className="my-[1em]">
                 <label className="flex gap-[.5em]">
                   <input type="checkbox" name="user-data" />
